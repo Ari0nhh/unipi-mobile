@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6BEC838D-6E23-4BC6-9C29-45C2743706F6" name="DW_FILES">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:25:24 UTC</createdTime>
+<comment>Таблица файлов</comment>
+<ownerDesignName>uni-data</ownerDesignName>
+<ordsAlias>table_4</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="F_ID" id="18D756FD-7CFD-3A4F-C738-7BB71147A88E">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:27:22 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="F_NAME" id="F3948A4B-9C2E-33BD-AAE1-5A581571BCA2">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:27:22 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="F_DATA" id="CFCF25F7-63BF-A837-D520-7F4C2B387230">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:27:22 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT029</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5690D286-11AD-A453-297D-BB97790B7DF9" name="DW_FILES_PK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:27:30 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="18D756FD-7CFD-3A4F-C738-7BB71147A88E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

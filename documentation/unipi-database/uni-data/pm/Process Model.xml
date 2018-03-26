@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProcessModel class="oracle.dbtools.crest.model.design.process.ProcessModel" name="Process Model" id="8FF43099-0D13-E931-1F90-A526AA2276DE">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 14:52:44 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</ProcessModel>

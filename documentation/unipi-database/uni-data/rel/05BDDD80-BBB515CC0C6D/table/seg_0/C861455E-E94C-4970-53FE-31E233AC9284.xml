@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C861455E-E94C-4970-53FE-31E233AC9284" name="DW_EVENT_SPEAKER">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:35:51 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<ordsAlias>table_12</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ES_ID" id="06871E43-D978-2465-BA38-7E69509297B3">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:38:31 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ES_NAME" id="575A71BA-4917-6B69-9EE5-F3C6EE24B0E7">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:38:31 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ES_PHOTO" id="15CCE7E8-E398-B1AF-D26F-3E3E572EC096">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:38:31 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0DFE599D-D137-503C-C453-67EFD227C821" referredColumn="6962DB3A-14D1-21D3-A1ED-E8A5D17FCFA3"/>
+</associations>
+</Column>
+<Column name="ES_EMPL" id="308DD908-E049-B3EE-B479-0B3E29BA7170">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:38:31 UTC</createdTime>
+<comment>Сотрудник</comment>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT034</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="02907CD1-C6B7-F7FD-FCAD-9F683F8AE6C4" name="DW_EVENT_SPEAKER_PK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:38:31 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="06871E43-D978-2465-BA38-7E69509297B3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="332DBFFF-2A3A-6FC6-C4C7-03200AF077A4" name="DW_EVENT_SPEAKER_DW_IMAGES_FK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:39:21 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="15CCE7E8-E398-B1AF-D26F-3E3E572EC096"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="uni-data" id="FF390D34-CAFD-25E8-1E26-0818D261967D" version="3.5">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 14:52:44 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>FF390D34-CAFD-25E8-1E26-0818D261967D</designId>
+</OSDM_Design>

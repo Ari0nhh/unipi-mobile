@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E0228B02-9911-7A46-2BA9-003FD39DA12F" name="DW_EVENTS">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:03:49 UTC</createdTime>
+<comment>Данная таблица содержит описание события</comment>
+<ownerDesignName>uni-data</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EVT_ID" id="90F99559-7EB0-A001-C811-53CE167A45BA">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:06:12 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EVT_NAME" id="62EB89BC-0769-3A29-A0A3-3DB7AB84EF0A">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:06:12 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EVT_DATE" id="0ACC100A-36D6-DEC4-CB0C-CB7F6072F1EB">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:10:52 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EVT_ADDRESS" id="6DBEDCC3-4730-8F33-C0C1-5C54947A84FD">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:10:52 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EVT_DESCR" id="9A2C628B-FB1C-4850-319E-6C582C176292">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:10:52 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EVT_INTERNAL" id="C7824597-1730-3140-EC30-5DAA610E5DE3">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:11:59 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT034</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="78C7F5EA-9C11-2556-8491-B29DB9DC341D" name="DW_EVENTS_PK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:06:12 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="90F99559-7EB0-A001-C811-53CE167A45BA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
