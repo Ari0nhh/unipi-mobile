@@ -66,7 +66,7 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="EA_STOP" id="D154CC2D-081B-6C93-8183-7623B36AD0E9">
+<Column name="EA_END" id="D154CC2D-081B-6C93-8183-7623B36AD0E9">
 <createdBy>Arion</createdBy>
 <createdTime>2018-03-26 15:24:42 UTC</createdTime>
 <ownerDesignName>uni-data</ownerDesignName>

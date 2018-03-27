@@ -31,9 +31,20 @@
 <ownDataTypeParameters>100,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="EVT_DATE" id="0ACC100A-36D6-DEC4-CB0C-CB7F6072F1EB">
+<Column name="EVT_DATE_START" id="0ACC100A-36D6-DEC4-CB0C-CB7F6072F1EB">
 <createdBy>Arion</createdBy>
 <createdTime>2018-03-26 15:10:52 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EVT_DATE_END" id="922478E0-7DA2-925B-CE82-A21EEE3B28C0">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-27 15:12:46 UTC</createdTime>
 <ownerDesignName>uni-data</ownerDesignName>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>

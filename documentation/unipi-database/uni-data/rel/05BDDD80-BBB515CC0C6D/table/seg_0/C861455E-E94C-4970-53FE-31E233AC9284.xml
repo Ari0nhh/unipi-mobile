@@ -56,6 +56,18 @@
 <ownDataTypeParameters>1,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="ES_ORG" id="E421038C-7511-9BAA-0AB6-FCE4B238D110">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-27 15:37:29 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="02907CD1-C6B7-F7FD-FCAD-9F683F8AE6C4" name="DW_EVENT_SPEAKER_PK">
