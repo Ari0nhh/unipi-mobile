@@ -1,6 +1,6 @@
 {
   "connection" : {
-    "username" : "postgre",
+    "username" : "postgres",
     "password" : "123",
     "database" : "unipi",
     "host"     : "62.109.16.88",

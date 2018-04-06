@@ -3,9 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var model = require("./model");
+var db = require("./model");
 
-model.sequelize.sync().then(() =>{
+db.sequelize.sync().then(() =>{
     console.log("Everything looks great! :)");
 }).catch((err) =>{
     console.log(err, "Something went wrong :(");
