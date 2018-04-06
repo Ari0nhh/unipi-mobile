@@ -62,7 +62,6 @@ module.exports.initRelations = () => {
     const DwEventPeriod = model.DwEventPeriod;
     const DwFile = model.DwFile;
     const DwVideo = model.DwVideo;
-    const DwEventSpeaker = model.DwEventSpeaker;
 
     DwEventAction.hasMany(DwEventActionFile, {
         as: 'FilesDwEventActionFks',
@@ -73,13 +72,6 @@ module.exports.initRelations = () => {
 
     DwEventAction.hasMany(DwEventActionVideo, {
         as: 'VideoDwEventActionFks',
-        foreignKey: 'ea_id',
-        onDelete: 'NO ACTION',
-        onUpdate: 'NO ACTION'
-    });
-
-    DwEventAction.hasMany(DwEventSpeaker, {
-        as: 'DwEventSpeakersDwEventActionFks',
         foreignKey: 'ea_id',
         onDelete: 'NO ACTION',
         onUpdate: 'NO ACTION'

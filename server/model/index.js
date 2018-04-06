@@ -1,6 +1,12 @@
 /* eslint global-require: "off" */
 const model = {};
-let initialized = false;
+
+var fs = require("fs");
+var path = require("path");
+var Sequelize = require("sequelize");
+
+var config = require(path.join(__dirname, "..", "config", "config.json"))["connection"];
+var sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 /**
  * Initializes sequelize models and their relations.
@@ -8,15 +14,14 @@ let initialized = false;
  * @returns {Object}            - Sequelize models.
  */
 function init(sequelize) {
-    delete module.exports.init; // Destroy itself to prevent repeated calls and clash with a model named 'init'.
-    initialized = true;
+    //delete module.exports.init; // Destroy itself to prevent repeated calls and clash with a model named 'init'.
     // Import model files and assign them to `model` object.
     model.DwEventAction = sequelize.import('./definition/dw-event-action.js');
     model.DwEventActionFile = sequelize.import('./definition/dw-event-action-files.js');
     model.DwEventActionVideo = sequelize.import('./definition/dw-event-action-video.js');
     model.DwEventPeriod = sequelize.import('./definition/dw-event-period.js');
     model.DwEventSpeaker = sequelize.import('./definition/dw-event-speaker.js');
-    model.DwEventSpeaker = sequelize.import('./definition/dw-event-speakers.js');
+    model.DwEventSpeakers = sequelize.import('./definition/dw-event-speakers.js');
     model.DwEvent = sequelize.import('./definition/dw-events.js');
     model.DwFavEvent = sequelize.import('./definition/dw-fav-events.js');
     model.DwFavUser = sequelize.import('./definition/dw-fav-users.js');
@@ -44,7 +49,10 @@ function init(sequelize) {
     return model;
 }
 
-// Note: While using this module, DO NOT FORGET FIRST CALL model.init(sequelize). Otherwise you get undefined.
-module.exports = model;
-module.exports.init = init;
-module.exports.isInitialized = initialized;
+var db = {};
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+db.Model = init(sequelize);
+
+module.exports = db;
+

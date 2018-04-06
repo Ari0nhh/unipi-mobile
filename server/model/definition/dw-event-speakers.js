@@ -1,7 +1,7 @@
 /* eslint new-cap: "off", global-require: "off" */
 
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('DwEventSpeaker', {
+    return sequelize.define('DwEventSpeakers', {
         eaId: {
             type: DataTypes.INTEGER,
             field: 'ea_id',
@@ -37,7 +37,6 @@ module.exports.initRelations = () => {
     const model = require('../index');
     const DwEventSpeaker = model.DwEventSpeaker;
     const DwEventAction = model.DwEventAction;
-    const DwEventSpeaker = model.DwEventSpeaker;
 
     DwEventSpeaker.belongsTo(DwEventAction, {
         as: 'Ea',
@@ -45,12 +44,4 @@ module.exports.initRelations = () => {
         onDelete: 'NO ACTION',
         onUpdate: 'NO ACTION'
     });
-
-    DwEventSpeaker.belongsTo(DwEventSpeaker, {
-        as: 'E',
-        foreignKey: 'es_id',
-        onDelete: 'NO ACTION',
-        onUpdate: 'NO ACTION'
-    });
-
 };

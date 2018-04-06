@@ -46,7 +46,6 @@ module.exports.initRelations = () => {
 
     const model = require('../index');
     const DwEventSpeaker = model.DwEventSpeaker;
-    const DwEventSpeaker = model.DwEventSpeaker;
     const DwImage = model.DwImage;
     const DwEventAction = model.DwEventAction;
 

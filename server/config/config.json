@@ -1,0 +1,9 @@
+{
+  "connection" : {
+    "username" : "postgre",
+    "password" : "123",
+    "database" : "unipi",
+    "host"     : "62.109.16.88",
+    "dialect"  : "postgres"
+  }
+}
