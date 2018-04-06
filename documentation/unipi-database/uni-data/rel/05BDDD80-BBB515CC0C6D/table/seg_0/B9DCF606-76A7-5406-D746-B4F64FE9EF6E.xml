@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B9DCF606-76A7-5406-D746-B4F64FE9EF6E" name="DW_EVENT_SPEAKERS">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:38:45 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<ordsAlias>table_13</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EA_ID" id="3AE87877-F623-F873-5AC9-8D54C99CA478">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:40:20 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AD89FD84-1E8E-704B-2E95-458933764692" referredColumn="5825C6AA-E7B4-EAFF-5C3C-12239B181553"/>
+</associations>
+</Column>
+<Column name="ES_ID" id="E945BCB5-9E3E-D5D0-EF94-5A4DD8F746EA">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:40:20 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="07BB37ED-E3F4-6E24-4B85-70CC13DC541B" referredColumn="06871E43-D978-2465-BA38-7E69509297B3"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="51837C15-A903-1AD3-118C-3BCE82CDD49E" name="DW_EVENT_SPEAKERS_DW_EVENT_ACTION_FK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:40:29 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3AE87877-F623-F873-5AC9-8D54C99CA478"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BC65C27D-292C-60A0-84B4-1ACDB85709A3" name="DW_EVENT_SPEAKERS_DW_EVENT_SPEAKER_FK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:40:42 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E945BCB5-9E3E-D5D0-EF94-5A4DD8F746EA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

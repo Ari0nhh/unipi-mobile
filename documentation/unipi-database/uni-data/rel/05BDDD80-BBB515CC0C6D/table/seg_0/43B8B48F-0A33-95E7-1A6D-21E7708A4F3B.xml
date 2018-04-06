@@ -1,0 +1,142 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="43B8B48F-0A33-95E7-1A6D-21E7708A4F3B" name="DW_USER">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:42:26 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<ordsAlias>table_14</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="US_ID" id="8B7980D2-C658-5CBB-629F-4AE7260777BC">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:46:27 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="US_NAME" id="C1838657-EF4B-9FE0-B21E-E87F0159F712">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:46:27 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="US_EMPL" id="48D331E2-96B4-E4A8-A08F-742134F17370">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:46:27 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT034</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="US_EMAIL" id="71BE20BE-DA32-9BFE-538D-506EBB9019D5">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:46:27 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="US_PHONE" id="AFE2015A-4ACD-86BE-CAE8-F2C85EE45B8F">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:46:27 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="US_ORG" id="4872A183-9CEA-691B-1857-C8A1C53F81C5">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:46:27 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="US_SHOW" id="B256CD2C-0BCF-3A26-C4E1-768132CC793B">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:46:27 UTC</createdTime>
+<comment>Бинарная маска. Нулевой бит - показывать email, первый бит - телефон, второй бит - организацию</comment>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="US_PHOTO" id="67422DE4-AFDD-8367-0F5F-589E36D45272">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:48:16 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="99E52E56-A4CF-3724-2686-8E130F5F804D" referredColumn="6962DB3A-14D1-21D3-A1ED-E8A5D17FCFA3"/>
+</associations>
+</Column>
+<Column name="US_PASSW" id="079AE918-AFD9-C0A5-BF8E-99FCC220DC76">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:48:16 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DBECE6D8-8B13-5970-3C0B-86E5A769F972" name="DW_USER_PK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:46:27 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8B7980D2-C658-5CBB-629F-4AE7260777BC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C4D4BD31-DFDB-B09A-DA75-376DA1BE455F" name="DW_USER_DW_IMAGES_FK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:48:26 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="67422DE4-AFDD-8367-0F5F-589E36D45272"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

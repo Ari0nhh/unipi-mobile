@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="4060EB83-78C0-5C6B-41DF-0DC350B1CB3D" mainViewID="FE46FC43-B8FF-54F9-B73E-4EA1E5E06D42">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 14:52:44 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

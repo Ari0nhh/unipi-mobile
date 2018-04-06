@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="92BCB776-DD36-93F4-65DF-A79D5BAC098A" containerWithKeyObject="0921794A-1011-AD39-CEF7-693FD90C76A0" localFKIndex="4E8511F0-B39E-8D3A-3CF2-6723F7B75BE9" name="DW_PARTCIPATION_DW_USER_FK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:55:06 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<referredTableLongName>DW_USER</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>43B8B48F-0A33-95E7-1A6D-21E7708A4F3B</referredTableID>
+<keyObject>DBECE6D8-8B13-5970-3C0B-86E5A769F972</keyObject>
+<referredKeyID>DBECE6D8-8B13-5970-3C0B-86E5A769F972</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>US_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

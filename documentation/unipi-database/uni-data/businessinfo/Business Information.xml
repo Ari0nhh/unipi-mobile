@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BusinessInfoDesign class="oracle.dbtools.crest.model.businessinfo.BusinessInfoDesign" name="Business Information" id="3BA00F6E-8913-DEE5-0B85-4684BF16B143">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 14:52:44 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</BusinessInfoDesign>

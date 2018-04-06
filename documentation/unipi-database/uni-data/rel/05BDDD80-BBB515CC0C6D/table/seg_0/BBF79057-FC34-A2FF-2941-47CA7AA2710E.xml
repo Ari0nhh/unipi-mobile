@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BBF79057-FC34-A2FF-2941-47CA7AA2710E" name="DW_IMAGES">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:27:58 UTC</createdTime>
+<comment>Таблица файлов</comment>
+<ownerDesignName>uni-data</ownerDesignName>
+<ordsAlias>table_4</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="IMG_ID" id="6962DB3A-14D1-21D3-A1ED-E8A5D17FCFA3">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:27:58 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="IMG_DATA" id="4EDF041A-308F-2555-4C79-22F82AB6E09C">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:27:58 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT029</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="IMG_KIND" id="7D47FF58-B8D0-22F8-2059-2C6D3B00F8FB">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-27 15:42:39 UTC</createdTime>
+<commentInRDBMS>Тип изображения, например image/png</commentInRDBMS>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0F099BFE-17F1-FFE6-5EA0-6E7F3C4429B5" name="DW_IMAGES_PK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:29:12 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6962DB3A-14D1-21D3-A1ED-E8A5D17FCFA3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

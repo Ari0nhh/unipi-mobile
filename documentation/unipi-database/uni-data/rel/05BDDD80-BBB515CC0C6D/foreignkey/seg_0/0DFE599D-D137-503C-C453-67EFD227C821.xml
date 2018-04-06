@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="0DFE599D-D137-503C-C453-67EFD227C821" containerWithKeyObject="C861455E-E94C-4970-53FE-31E233AC9284" localFKIndex="332DBFFF-2A3A-6FC6-C4C7-03200AF077A4" name="DW_EVENT_SPEAKER_DW_IMAGES_FK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:39:21 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<referredTableLongName>DW_IMAGES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>BBF79057-FC34-A2FF-2941-47CA7AA2710E</referredTableID>
+<keyObject>0F099BFE-17F1-FFE6-5EA0-6E7F3C4429B5</keyObject>
+<referredKeyID>0F099BFE-17F1-FFE6-5EA0-6E7F3C4429B5</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>IMG_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

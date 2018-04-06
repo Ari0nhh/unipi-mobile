@@ -1,0 +1,116 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FE1666AD-5E82-60E6-C2FE-0CF5D0B7A483" name="DW_EVENT_ACTION">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:19:02 UTC</createdTime>
+<comment>Конкретное событие, привязанное к веременному промежутку (доклад, сессия, выступление и т.п.)</comment>
+<ownerDesignName>uni-data</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EA_ID" id="5825C6AA-E7B4-EAFF-5C3C-12239B181553">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:23:17 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EA_PERIOD" id="0ED308BD-6D93-BBF0-1094-A4214CAEC488">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:23:17 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="76ABFE95-DA1D-969E-11FB-F9D679F875DF" referredColumn="1FBD564F-D4DF-6A80-4667-96912E89A7A5"/>
+</associations>
+</Column>
+<Column name="EA_NAME" id="9C025D67-C605-2F24-C6E5-AA93CE5545C1">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:23:17 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>200</dataTypeSize>
+<ownDataTypeParameters>200,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EA_DESC" id="91957B3D-DDF4-33E5-5C46-1B4C0891951F">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:23:17 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EA_START" id="1D52049D-2F97-EEED-DE17-0D5031A61C57">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:24:42 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EA_END" id="D154CC2D-081B-6C93-8183-7623B36AD0E9">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:24:42 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT008</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EA_LOCATION" id="D46193E1-4288-38F9-AE2C-8C4E83842641">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:41:28 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4A74E4D8-69F6-58F5-9714-F14F13FD58C0" name="DW_EVENT_ACTION_PK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:23:17 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5825C6AA-E7B4-EAFF-5C3C-12239B181553"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F9F473F5-2469-4F50-315A-300DB0124A75" name="DW_EVENT_ACTION_DW_EVENT_PERIOD_FK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:23:47 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0ED308BD-6D93-BBF0-1094-A4214CAEC488"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

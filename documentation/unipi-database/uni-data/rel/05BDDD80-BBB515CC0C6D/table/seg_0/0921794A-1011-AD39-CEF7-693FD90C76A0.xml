@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0921794A-1011-AD39-CEF7-693FD90C76A0" name="DW_PARTCIPATION">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:49:19 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<ordsAlias>table_15</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EVT_ID" id="AC8E470C-1DB5-D582-9BBF-83E3B1A0DEC2">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:54:11 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0234CEC2-2967-8702-DED3-A55509C0E926" referredColumn="90F99559-7EB0-A001-C811-53CE167A45BA"/>
+</associations>
+</Column>
+<Column name="US_ID" id="C64D707C-54AD-5A70-9592-5A7E938980F3">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:54:11 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="92BCB776-DD36-93F4-65DF-A79D5BAC098A" referredColumn="8B7980D2-C658-5CBB-629F-4AE7260777BC"/>
+</associations>
+</Column>
+<Column name="EVT_REG" id="031F6C73-538A-53C2-89CE-DE0589F72AC3">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:54:11 UTC</createdTime>
+<comment>Пользователь зарегистрировался на ресепшене мероприятия</comment>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT034</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EVT_TRANSF" id="64F05663-7855-C8BD-4B3E-0C49CCA625AC">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:54:11 UTC</createdTime>
+<comment>Информация о трансфере</comment>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EVT_ACCOMOD" id="ADC05ED7-A0E6-B6BC-66E4-5A70B7FBA91E">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:54:11 UTC</createdTime>
+<comment>Информация о размещении - отель, вписка, все дела)</comment>
+<ownerDesignName>uni-data</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT037</logicalDatatype>
+<dataTypeSize>500</dataTypeSize>
+<ownDataTypeParameters>500,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="05D57EF4-6296-7056-F5F2-D3AAA3D72F2F" name="DW_PARTCIPATION_DW_EVENTS_FK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:54:24 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AC8E470C-1DB5-D582-9BBF-83E3B1A0DEC2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4E8511F0-B39E-8D3A-3CF2-6723F7B75BE9" name="DW_PARTCIPATION_DW_USER_FK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:55:06 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C64D707C-54AD-5A70-9592-5A7E938980F3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

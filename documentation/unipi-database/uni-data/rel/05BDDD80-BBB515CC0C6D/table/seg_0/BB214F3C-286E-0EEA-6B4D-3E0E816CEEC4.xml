@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="BB214F3C-286E-0EEA-6B4D-3E0E816CEEC4" name="DW_FAV_USERS">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:59:04 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<ordsAlias>table_17</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="US_ID" id="4094F5DD-FA01-0B9E-C507-23CB878E460A">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:59:35 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8012CFC3-A320-F390-9BBD-094489F731C4" referredColumn="8B7980D2-C658-5CBB-629F-4AE7260777BC"/>
+</associations>
+</Column>
+<Column name="FAV_US_ID" id="B79CEAF1-C286-1FFE-E2CF-8C6E3D09916A">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:59:35 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3A709BC0-8753-ED83-C0B9-DEAAAC0F4001" referredColumn="8B7980D2-C658-5CBB-629F-4AE7260777BC"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="33DDCA16-921B-C038-5712-94E8782E88E4" name="DW_FAV_USERS_DW_USER_FK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:59:42 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4094F5DD-FA01-0B9E-C507-23CB878E460A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F7763EDC-7497-2CEA-8BDF-4F4A4140E301" name="DW_FAV_USERS_DW_USER_FKv2">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:59:53 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B79CEAF1-C286-1FFE-E2CF-8C6E3D09916A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

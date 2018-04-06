@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9F86E6A4-79AE-C2D2-7ADC-B0EE4DFFADAB" name="DW_EVENT_ACTION_VIDEO">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:33:54 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<ordsAlias>table_11</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EA_ID" id="C6CC57A3-3BCC-53B3-B304-EB7B518135D5">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:34:28 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B966CADA-7024-94FD-1EF6-2F05571EDA6D" referredColumn="5825C6AA-E7B4-EAFF-5C3C-12239B181553"/>
+</associations>
+</Column>
+<Column name="V_ID" id="EC0C3D54-8A82-73DC-747A-AD37B8FAC082">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:34:28 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EEEA3342-595F-0ACF-654F-5830A8E27D43" referredColumn="9EF8D1E3-F902-CF52-97FE-EB4DA97650D3"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="59FAF75F-914A-0B13-1794-74CA17603975" name="DW_EVENT_ACTION_VIDEO_DW_EVENT_ACTION_FK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:34:37 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C6CC57A3-3BCC-53B3-B304-EB7B518135D5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EB58E5BE-2512-17B5-787F-01692B6ABE5B" name="DW_EVENT_ACTION_VIDEO_DW_VIDEO_FK">
+<createdBy>Arion</createdBy>
+<createdTime>2018-03-26 15:34:49 UTC</createdTime>
+<ownerDesignName>uni-data</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EC0C3D54-8A82-73DC-747A-AD37B8FAC082"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
