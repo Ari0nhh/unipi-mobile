@@ -25,6 +25,11 @@ module.exports = function(passport, user) {
                 if(!user)
                     return done(null, false);
 
+                var pass = generateHash(password, user);
+
+                if(pass != user.usPassw)
+                    return(done(null, false));
+
                 return done(null, user);
             })
         }

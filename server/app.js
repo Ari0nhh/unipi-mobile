@@ -33,6 +33,12 @@ app.use('/', indexRouter);
 var db = require("./model");
 require("./auth/passport")(passport, db.Model.DwUser);
 
+db.sequelize.sync().then(()=>{
+    console.log("Database connected!");
+}).catch((err)=>{
+    console.log("Failed to connect");
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

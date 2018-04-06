@@ -1,7 +1,7 @@
 {
   "connection" : {
     "username" : "postgres",
-    "password" : "123",
+    "password" : "'GKEHB<EC=eyey",
     "database" : "unipi",
     "host"     : "62.109.16.88",
     "dialect"  : "postgres"
