@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             field: 'evt_id',
             allowNull: false,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement : true
         },
         evtName: {
             type: DataTypes.STRING(100),
