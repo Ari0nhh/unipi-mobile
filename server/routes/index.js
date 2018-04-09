@@ -51,10 +51,10 @@ router.get('/REST/event/:evtId', (req, res, next) =>{
 
     db.Model.DwEvent.findOne(query).then( event => {
         if(!event)
-            return res.status(404);
+            return res.status(404).end();
 
         if(event.evtInternal === '1' && (!req.user || !req.user.usEmpl))
-            return res.status(404);
+            return res.status(404).end();
 
         res.json(event);
     });
