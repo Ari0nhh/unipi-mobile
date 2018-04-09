@@ -1,8 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var passport = require("Passport");
+let express = require('express');
+let router = express.Router();
 
-var db = require("../model");
+let db = require("../model");
 const Op = db.Sequelize.Op;
 
 router.get('/REST/events', (req, res, next) =>
