@@ -56,10 +56,19 @@ router.get('/REST/event/:evtId', (req, res, next) =>{
         if(event.evtInternal === '1' && (!req.user || !req.user.usEmpl))
             return res.status(404).end();
 
-        res.json(event);
+        let qPeriods = {
+            where   : {ep_event : query.where.evt_id},
+            include : [{model : db.Model.DwEventAction, as : 'actions'}]
+        };
+        db.Model.DwEventPeriod.findAll(qPeriods).then(periods =>{
+
+            event.dataValues["periods"] = periods;
+            res.json(event);
+        });
+
+        //res.json(event);
     });
 });
-
 
 router.post('/auth', (req, res, next)=>
 {

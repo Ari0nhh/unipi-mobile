@@ -50,7 +50,7 @@ module.exports.initRelations = () => {
     const DwEvent = model.DwEvent;
 
     DwEventPeriod.hasMany(DwEventAction, {
-        as: 'DwEventActionDwEventPeriodFks',
+        as: 'actions',
         foreignKey: 'ea_period',
         onDelete: 'NO ACTION',
         onUpdate: 'NO ACTION'
