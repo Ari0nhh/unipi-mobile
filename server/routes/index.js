@@ -78,6 +78,22 @@ router.get("/REST/image/:imgId", (req, res, next) =>{
     });
 });
 
+router.get("/REST/user/:userId", (req, res, next) =>{
+    let userId = req.params["userId"];
+    if(!req.user || (req.user.usId !== userId)) //Пока не даём смотреть чужой профиль
+    {
+        return res.status(403).end();
+    }
+
+    let query = { where : {us_id : userId}};
+    db.Model.DwUser.findOne(query).then(user =>{
+        if(!user)
+            return res.status(404).end();
+
+        res.json(user);
+    });
+});
+
 router.post('/auth', (req, res, next)=>
 {
     passport.authenticate("passport-local", (req, res) =>{
