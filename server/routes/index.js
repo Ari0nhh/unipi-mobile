@@ -70,6 +70,14 @@ router.get('/REST/event/:evtId', (req, res, next) =>{
     });
 });
 
+router.get("/REST/image/:imgId", (req, res, next) =>{
+    let query = { where : {img_id : req.params["imgId"]} };
+
+    db.Model.DwImage.findOne(query).then(image =>{
+        res.type(image.imgKind).send(image.imgData);
+    });
+});
+
 router.post('/auth', (req, res, next)=>
 {
     passport.authenticate("passport-local", (req, res) =>{
