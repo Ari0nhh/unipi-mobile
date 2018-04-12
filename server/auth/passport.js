@@ -1,10 +1,9 @@
-var bCrypt = require("bcrypt-nodejs");
+let bCrypt = require("bcrypt-nodejs");
 
 module.exports = function(passport, user) {
-    var User = user;
-    var LocalStrategy = require("passport-local").Strategy;
+    let LocalStrategy = require("passport-local").Strategy;
 
-    passport.use('local-signup', new LocalStrategy(
+    passport.use('login', new LocalStrategy(
         {
             usernameField : 'email',
             passwordField : 'password',
@@ -13,42 +12,40 @@ module.exports = function(passport, user) {
 
         (req, email, password, done) =>
         {
-            var generateHash = function(password, user)
+            var generateHash = function(password, account)
             {
-                return bCrypt.hashSync(password, User.usSalt);
+                return bCrypt.hashSync(password, account.usSalt);
             };
 
-            User.findOne({
-                where : {usEmail: email}
-            }).then((user) =>
+            user.findOne({where : {usEmail: email}}).then((locUser) =>
             {
-                if(!user)
+                if(!locUser)
                     return done(null, false);
 
-                var pass = generateHash(password, user);
+                var pass = generateHash(password, locUser);
 
-                if(pass != user.usPassw)
+                if(pass !== locUser.usPassw)
                     return(done(null, false));
 
-                return done(null, user);
-            })
+                return done(null, locUser);
+            });
         }
     ));
 
-    passport.serializeUser((user, done) =>{
-       done(null, user.usId);
+    passport.serializeUser((login, done) =>{
+        done(null, login.usId);
     });
 
     passport.deserializeUser((id, done) =>
     {
-        User.findById(id).then((user)=>
+        user.findById(id).then((login)=>
         {
-            if(user)
+            if(login)
             {
-                done(null, user.get());
+                done(null, login.get());
             }else
             {
-                done(user.errors, null);
+                done(login.errors, null);
             }
         });
     });
