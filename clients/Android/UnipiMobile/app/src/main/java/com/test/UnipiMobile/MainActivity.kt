@@ -1,7 +1,10 @@
 package com.test.UnipiMobile
 
+import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat.startActivity
 import android.view.View
 
 import retrofit2.Call
@@ -24,7 +27,8 @@ import android.widget.Toast
 import retrofit2.http.Path
 
 
-class PostsAdapter(private val posts: MutableList<Event>?) : RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
+
+class PostsAdapter(private val posts: MutableList<Event>?, val clickListener: (Event) -> Unit) : RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return posts?.size ?: 0
@@ -37,16 +41,11 @@ class PostsAdapter(private val posts: MutableList<Event>?) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val post = posts!![position]
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            holder.post.text = Html.fromHtml(post.elementPureHtml, Html.FROM_HTML_MODE_LEGACY)
-//        } else {
-//            holder.post.text = Html.fromHtml(post.elementPureHtml)
-//        }
-        //holder.post.text = Html.fromHtml(post.elementPureHtml)
-        //holder.site.text = post.site
-        holder.post.text = Html.fromHtml(post.name)
-        holder.site.text = post.period
 
+        holder.post.text = post.evt_name //Html.fromHtml
+        holder.site.text = post.evt_date_start
+
+        holder.post.setOnClickListener{clickListener(post)}
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -65,6 +64,13 @@ class MainActivity : AppCompatActivity() {
     var recyclerView: RecyclerView? = null
     var posts: MutableList<Event>? = null
 
+    private fun eventItemClicked(eventItem : Event) {
+        //Toast.makeText(this, "Clicked: ${partItem.itemName}", Toast.LENGTH_LONG).show()
+        val intent = Intent(this@MainActivity, EventInfoActivity::class.java)
+        intent.putExtra("id", eventItem.evt_id)
+        startActivity(intent)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -73,12 +79,11 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.posts_recycle_view) as RecyclerView
         val layoutManager: LinearLayoutManager = LinearLayoutManager(this)
-        (recyclerView as RecyclerView).setLayoutManager(layoutManager)
+        recyclerView!!.setLayoutManager(layoutManager)
 
-        val adapter: PostsAdapter = PostsAdapter(posts)
-        (recyclerView as RecyclerView).setAdapter(adapter)
+        val adapter: PostsAdapter = PostsAdapter(posts, { eventItem : Event -> eventItemClicked(eventItem) })
+        recyclerView!!.setAdapter(adapter)
 
-        //UnipiMobileApi.getData("bash", 50).enqueue(object: Callback<List<Event>?> {
         UnipiMobileApi.getEvents().enqueue(object: Callback<List<Event>?> {
             override fun onFailure(call: Call<List<Event>?>?, t: Throwable?) {
                 Toast.makeText(this@MainActivity, "An error occurred during networking", Toast.LENGTH_SHORT).show()
