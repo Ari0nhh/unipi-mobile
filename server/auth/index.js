@@ -1,7 +1,6 @@
-let bCrypt = require("bcrypt-nodejs");
-
 module.exports = function(passport, user) {
-    let LocalStrategy = require("passport-local").Strategy;
+    let bCrypt = require('bcrypt-nodejs');
+    let LocalStrategy = require('passport-local').Strategy;
 
     passport.use('login', new LocalStrategy(
         {
@@ -10,19 +9,21 @@ module.exports = function(passport, user) {
             passReqToCallback : true
         },
 
-        (req, email, password, done) =>
+        (req, username, password, done) =>
         {
-            var generateHash = function(password, account)
+            let generateHash = function(password, account)
             {
                 return bCrypt.hashSync(password, account.usSalt);
             };
 
-            user.findOne({where : {usEmail: email}}).then((locUser) =>
+            console.log('Password::login');
+            user.findOne({where : {usEmail: username}}).then((locUser) =>
             {
+                console.log(locUser);
                 if(!locUser)
                     return done(null, false);
 
-                var pass = generateHash(password, locUser);
+                let pass = generateHash(password, locUser);
 
                 if(pass !== locUser.usPassw)
                     return(done(null, false));
@@ -49,4 +50,4 @@ module.exports = function(passport, user) {
             }
         });
     });
-}
+};

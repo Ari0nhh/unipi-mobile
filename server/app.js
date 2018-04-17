@@ -1,13 +1,17 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let logger = require('morgan');
+let app = express();
 
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
+let session = require('express-session');
 
-var logger = require('morgan');
-var db = require('./model');
-var app = express();
+let passport = require('passport');
+let db = require('./model');
+
+require('./auth')(passport, db.Model.DwUser);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -15,22 +19,15 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(session({secret : 'old donkey ears',
+    resave : false,
+    saveUninitialized : false}));
 app.use(cookieParser());
-
-var passport = require('passport');
-var session = require('express-session');
-app.use(session({
-    secret : 'old donkey ears',
-    resave : true,
-    saveUninitialized : true
-}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended : true}));
 
 app.use(passport.initialize());
 app.use(passport.session());
-require("./auth/passport")(passport, db.Model.DwUser);
-
 
 var indexRouter = require('./routes/index')(passport, db);
 app.use('/', indexRouter);
