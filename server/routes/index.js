@@ -9,6 +9,7 @@ module.exports = function(passport, db)
     require('./handlers/image')(router, passport, db);
     require('./handlers/profile')(router, passport, db);
     require('./handlers/auth')(router, passport, db);
+    require('./handlers/register')(router, passport, db);
 
     return router;
 };

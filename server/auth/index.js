@@ -11,11 +11,6 @@ module.exports = function(passport, user) {
 
         (req, username, password, done) =>
         {
-            let generateHash = function(password, account)
-            {
-                return bCrypt.hashSync(password, account.usSalt);
-            };
-
             console.log('Password::login');
             user.findOne({where : {usEmail: username}}).then((locUser) =>
             {
@@ -23,9 +18,7 @@ module.exports = function(passport, user) {
                 if(!locUser)
                     return done(null, false);
 
-                let pass = generateHash(password, locUser);
-
-                if(pass !== locUser.usPassw)
+                if(!bCrypt.compareSync(password, locUser.usPassw))
                     return(done(null, false));
 
                 return done(null, locUser);
