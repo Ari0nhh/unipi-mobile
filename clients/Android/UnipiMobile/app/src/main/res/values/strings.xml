@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">UnipiMobile</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment1">1111111</string>
+    <string name="hello_blank_fragment2">2222222</string>
 </resources>

@@ -76,6 +76,9 @@ interface UnipiMobileRestApi {
     @GET("REST/events")
     fun getEvents(): Call<List<Event>>
 
+    @GET("REST/events/archive")
+    fun getArchiveEvents(): Call<List<Event>>
+
     @GET("REST/event/{id}")
     fun getEventInfo(@Path("id") id: Int): Call<EventInfo>
 
