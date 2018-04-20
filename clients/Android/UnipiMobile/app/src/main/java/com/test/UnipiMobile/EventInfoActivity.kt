@@ -2,22 +2,40 @@ package com.test.UnipiMobile
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.view.View
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_event_info.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class pageradapter (fm: android.support.v4.app.FragmentManager) : FragmentStatePagerAdapter(fm){
+class pageradapter (fm: android.support.v4.app.FragmentManager, evInfo: EventInfo?) : FragmentStatePagerAdapter(fm){
+    var cueEventInfo: EventInfo? = evInfo
+
     override fun getItem(position: Int): android.support.v4.app.Fragment{
+        val frag: Fragment
+        var bundle = Bundle()
+
         when (position) {
 
-            0 -> return DecriptionFragment()
-            1 -> return PeriodsFragment()
-            else -> return DecriptionFragment()
+            0 -> {
+                if (cueEventInfo != null) {
+                    bundle.putString("desc", cueEventInfo?.evtDescr)
+                    bundle.putString("address", cueEventInfo?.evtAddress)
+                    bundle.putString("dt_start", cueEventInfo?.evtDateStart)
+                    bundle.putString("dt_end", cueEventInfo?.evtDateEnd)
+                }
+                frag = DecriptionFragment()
+            }
+            1 -> frag = PeriodsFragment()
+            else -> frag = DecriptionFragment()
         }
+
+        frag.arguments = bundle
+        return frag
     }
 
     override fun getCount(): Int {
@@ -35,11 +53,6 @@ class EventInfoActivity : AppCompatActivity() {
 
         val id: Int = intent.extras.getInt("id")
 
-        val adapter = pageradapter(supportFragmentManager)
-        val pager = findViewById<View>(R.id.pager) as ViewPager
-
-        pager.adapter = adapter
-
         UnipiMobileApi.getEventInfo(id).enqueue(object: Callback<EventInfo?> {
             override fun onFailure(call: Call<EventInfo?>?, t: Throwable?) {
                 Toast.makeText(this@EventInfoActivity, "An error occurred during networking", Toast.LENGTH_SHORT).show()
@@ -47,9 +60,16 @@ class EventInfoActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<EventInfo?>?, response: Response<EventInfo?>?) {
                 CurEventInfo = response?.body()
-                //pager.text = response?.body()!!.evtDescr
+
+                if (CurEventInfo != null)
+                    tvEventName.text = CurEventInfo?.evtName
+
+                val adapter = pageradapter(supportFragmentManager, CurEventInfo)
+                val pager = findViewById<View>(R.id.pager) as ViewPager
+                pager.adapter = adapter
             }
         })
+
 
         /*
         UnipiMobileApi.getImage(1).enqueue(object: Callback<Bitmap?> {
