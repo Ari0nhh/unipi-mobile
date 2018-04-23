@@ -2,7 +2,9 @@ program unipiAdmin;
 
 uses
   Vcl.Forms,
-  Main in 'Main.pas' {MWnd};
+  Main in 'Main.pas' {MWnd},
+  ServerList in 'ServerList.pas' {SrvList},
+  Intfs in 'Intfs.pas';
 
 {$R *.res}
 
