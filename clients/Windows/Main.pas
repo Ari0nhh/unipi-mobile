@@ -24,17 +24,21 @@ type
 		cxLarge: TcxImageList;
 		dxBarAddEvent: TdxBarLargeButton;
 		dxBarRemEvent: TdxBarLargeButton;
-		dxBarCombo1: TdxBarCombo;
+    	dxBarEventKind: TdxBarCombo;
 		dxBarDate: TdxBarDateCombo;
 		dxBarUpdate: TdxBarLargeButton;
     	dxBarLogOut: TdxBarLargeButton;
     	procedure dxBtnSrvEditClick(Sender: TObject);
     	procedure FormCreate(Sender: TObject);
     	procedure FormDestroy(Sender: TObject);
+    	procedure dxBarBtnLoginClick(Sender: TObject);
 	strict private
         FServerList : TList<TServerData>;
+        FSession    : ISession;
     	procedure InitServerList();
         procedure InitStartUI();
+        procedure InitLoginGUI();
+        procedure DownloadEventData();
 	end;
 
 var
@@ -44,9 +48,44 @@ implementation
 
 {$R *.dfm}
 
-uses ServerList;
+uses ServerList, LoginFormImpl, Session;
 
 { TMWnd }
+
+procedure TMWnd.DownloadEventData;
+begin
+
+end;
+
+procedure TMWnd.dxBarBtnLoginClick(Sender: TObject);
+var
+	login : TLoginForm;
+begin
+	login := TLoginForm.Create(Self);
+
+    try
+    	if login.ShowModal() <> mrOK then
+        	Exit;
+
+        if dxBarServer.ItemIndex = -1 then
+        	Exit;
+
+		FSession := CreateSession(FServerList[dxBarServer.ItemIndex],
+        	login.cxUserName.Text, login.cxPassword.Text);
+
+        if not FSession.Valid then begin
+        	Application.MessageBox(PChar(FSession.LastError),
+            	PChar('Login error'), MB_ICONSTOP);
+            Exit;
+        end;
+
+        InitLoginGUI();
+        DownloadEventData();
+
+    finally
+    	login.Free();
+    end;
+end;
 
 procedure TMWnd.dxBtnSrvEditClick(Sender: TObject);
 var
@@ -71,6 +110,18 @@ end;
 procedure TMWnd.FormDestroy(Sender: TObject);
 begin
 	FreeAndNil(FServerList);
+end;
+
+procedure TMWnd.InitLoginGUI;
+begin
+	dxBarBtnLogin.Visible := ivNever;
+    dxBarLogOut.Visible := ivAlways;
+
+    dxBarAddEvent.Enabled := True;
+    dxBarRemEvent.Enabled := True;
+    dxBarEventKind.Enabled := True;
+    dxBarDate.Enabled := True;
+    dxBarUpdate.Enabled := True;
 end;
 
 procedure TMWnd.InitServerList;

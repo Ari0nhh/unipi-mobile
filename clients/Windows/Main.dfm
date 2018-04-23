@@ -110,7 +110,7 @@ object MWnd: TMWnd
           UserDefine = [udWidth]
           UserWidth = 151
           Visible = True
-          ItemName = 'dxBarCombo1'
+          ItemName = 'dxBarEventKind'
         end
         item
           UserDefine = [udWidth]
@@ -215,6 +215,7 @@ object MWnd: TMWnd
       Enabled = False
       Hint = #1042#1093#1086#1076
       Visible = ivAlways
+      OnClick = dxBarBtnLoginClick
       LargeImageIndex = 0
     end
     object dxBarAddEvent: TdxBarLargeButton
@@ -233,7 +234,7 @@ object MWnd: TMWnd
       Visible = ivAlways
       LargeImageIndex = 2
     end
-    object dxBarCombo1: TdxBarCombo
+    object dxBarEventKind: TdxBarCombo
       Caption = #1058#1080#1087
       Category = 0
       Enabled = False
@@ -333,7 +334,6 @@ object MWnd: TMWnd
     object dxBarLogOut: TdxBarLargeButton
       Caption = #1042#1099#1093#1086#1076
       Category = 0
-      Enabled = False
       Hint = #1042#1099#1093#1086#1076
       Visible = ivNever
       LargeImageIndex = 4

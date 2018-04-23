@@ -107,6 +107,11 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Intfs.pas"/>
+        <DCCReference Include="LoginFormImpl.pas">
+            <Form>LoginForm</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Session.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -130,6 +135,12 @@
             </Delphi.Personality>
             <Deployment Version="3">
                 <DeployFile LocalName="Win32\Debug\unipiAdmin.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>unipiAdmin.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Release\unipiAdmin.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>unipiAdmin.exe</RemoteName>
                         <Overwrite>true</Overwrite>
