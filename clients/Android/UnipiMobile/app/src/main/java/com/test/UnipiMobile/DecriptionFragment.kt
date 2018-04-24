@@ -44,10 +44,7 @@ class DecriptionFragment : Fragment() {
         _dtEnd?.text = dt_end
         _tvAddress?.text = address
 
-        //val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ") // .SSSz
-        //val date = formatter.parse(dt_end)
-
-
+        val date: Date? = StringToDate(dt_end)
 
         return view
     }

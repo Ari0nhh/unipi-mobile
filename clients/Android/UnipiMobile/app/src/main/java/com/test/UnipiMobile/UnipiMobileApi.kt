@@ -8,6 +8,9 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 import java.sql.Blob
+import java.sql.Date
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 data class Event(
@@ -110,4 +113,15 @@ object UnipiMobileRestApiImpl{
 
 val UnipiMobileApi by lazy {
     UnipiMobileRestApiImpl.create()
+}
+
+fun StringToDate(str: String): java.util.Date?{
+    try {
+        val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault())
+        formatter.timeZone = TimeZone.getTimeZone("UTC")
+        return formatter.parse(str)
+    }
+    catch (e: Exception) {
+        return null
+    }
 }
