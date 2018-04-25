@@ -28,10 +28,10 @@ class DecriptionFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        var desc: String = this.arguments.getString("desc")
-        var address: String = this.arguments.getString("address")
-        var dt_start: String = this.arguments.getString("dt_start")
-        var dt_end: String = this.arguments.getString("dt_end")
+        var desc: String = this.arguments!!.getString("desc")
+        var address: String = this.arguments!!.getString("address")
+        var dt_start: String = this.arguments!!.getString("dt_start")
+        var dt_end: String = this.arguments!!.getString("dt_end")
 
         val view = inflater.inflate(R.layout.fragment_decription, container, false)
         val _tvDesc: TextView? = view?.findViewById(R.id.tvDesc)

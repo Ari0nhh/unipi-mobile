@@ -24,6 +24,7 @@ import retrofit2.Retrofit
 import retrofit2.Callback
 
 import retrofit2.http.Path
+import java.util.*
 
 
 class PostsAdapter(private val posts: MutableList<Event>?, val clickListener: (Event) -> Unit) : RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
@@ -39,11 +40,12 @@ class PostsAdapter(private val posts: MutableList<Event>?, val clickListener: (E
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val post = posts!![position]
+        val dateSt: Date? = StringToDate(post.evt_date_start)
+        val dateEnd: Date? = StringToDate(post.evt_date_end)
 
         holder.post.text = post.evt_name //Html.fromHtml
-        holder.site.text = post.evt_date_start
-        holder.site.text = post.evt_date_start
-        holder.imgStatus.setImageResource(0)
+//        holder.site.text = post.evt_date_start
+//        holder.imgStatus.setImageResource(0)
 
         holder.post.setOnClickListener{clickListener(post)}
     }
