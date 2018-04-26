@@ -9,6 +9,9 @@
         android:id="@+id/tvEventName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -17,6 +20,6 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </android.support.v4.view.ViewPager>
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"/>
 </LinearLayout>
