@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".post_item" />
-        <activity android:name=".EventInfoActivity"></activity>
+        <activity android:name=".EventInfoActivity" />
+        <activity android:name=".PeriodActivity" />
+        <activity android:name=".ActionActivity"></activity>
     </application>
 
 </manifest>
