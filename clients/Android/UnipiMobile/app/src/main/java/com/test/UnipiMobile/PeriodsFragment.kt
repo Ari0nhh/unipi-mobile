@@ -1,7 +1,9 @@
 package com.test.UnipiMobile
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -12,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_periods.*
 import java.util.*
 
 
-class ActionsAdapter(private val actions: List<Action>?) : RecyclerView.Adapter<ActionsAdapter.ViewHolder>() {
+class ActionsAdapter(private val actions: List<Action>?, val clickListener: (Action) -> Unit) : RecyclerView.Adapter<ActionsAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return actions?.size ?: 0
@@ -33,7 +35,7 @@ class ActionsAdapter(private val actions: List<Action>?) : RecyclerView.Adapter<
             holder.dates.text = dt.toString()
         //holder.dates.text = item.epStart
 
-        //holder.post.setOnClickListener{clickListener(item)}
+        holder.post.setOnClickListener{clickListener(item)}
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -47,7 +49,7 @@ class ActionsAdapter(private val actions: List<Action>?) : RecyclerView.Adapter<
     }
 }
 
-class PeriodsAdapter(private val periods: MutableList<Period>?) : RecyclerView.Adapter<PeriodsAdapter.ViewHolder>() {
+class PeriodsAdapter(private val periods: MutableList<Period>?, val clickListener: (Action) -> Unit) : RecyclerView.Adapter<PeriodsAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return periods?.size ?: 0
@@ -70,7 +72,7 @@ class PeriodsAdapter(private val periods: MutableList<Period>?) : RecyclerView.A
         val layoutManager: LinearLayoutManager = LinearLayoutManager(holder.itemView.context)
         holder.recyclerView.setLayoutManager(layoutManager)
 
-        val adapter: ActionsAdapter = ActionsAdapter(item.actions)
+        val adapter: ActionsAdapter = ActionsAdapter(item.actions, clickListener)
         holder.recyclerView.setAdapter(adapter)
 
         //holder.post.setOnClickListener{clickListener(item)}
@@ -93,6 +95,12 @@ class PeriodsFragment : Fragment() {
     var periods: MutableList<Period>? = null
     var recyclerView: RecyclerView? = null
 
+    private fun actionItemClicked(item : Action) {
+        val intent = Intent(this@PeriodsFragment.context, ActionInfoActivity::class.java)
+        intent.putExtra("id", item.eaId)
+        startActivity(intent)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -102,7 +110,7 @@ class PeriodsFragment : Fragment() {
         val layoutManager: LinearLayoutManager = LinearLayoutManager(this.context)
         recyclerView?.setLayoutManager(layoutManager)
 
-        val adapter: PeriodsAdapter = PeriodsAdapter(periods)
+        val adapter: PeriodsAdapter = PeriodsAdapter(periods, { item : Action -> actionItemClicked(item) })
         recyclerView?.setAdapter(adapter)
         //recyclerView?.getAdapter()?.notifyDataSetChanged()
 
