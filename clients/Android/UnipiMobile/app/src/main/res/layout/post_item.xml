@@ -27,6 +27,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:background="@android:color/holo_orange_dark"
+                android:foregroundGravity="top|left"
                 app:srcCompat="@color/colorRosOrang" />
 
             <TextView
@@ -38,7 +39,7 @@
                 android:padding="8dp"
                 android:text="12-15 июня 2018"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:textSize="12dp"
+                android:textSize="14sp"
                 android:textStyle="bold|italic" />
 
             <CheckBox
