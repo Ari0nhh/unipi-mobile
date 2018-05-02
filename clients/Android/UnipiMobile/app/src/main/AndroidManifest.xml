@@ -24,10 +24,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".post_item" />
+        <activity android:name=".EventInfoActivity"></activity>
         <activity android:name=".EventInfoActivity" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
-    </application>
+        <activity android:name=".PeriodActivity" />
+        <activity android:name=".ActionActivity" />
+        <activity android:name=".ActionInfoActivity"></activity>    </application>
 
 </manifest>

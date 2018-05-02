@@ -30,7 +30,11 @@ class pageradapter (fm: android.support.v4.app.FragmentManager, evInfo: EventInf
                 }
                 frag = DecriptionFragment()
             }
-            1 -> frag = PeriodsFragment()
+            1 -> {
+                var fragPrds: PeriodsFragment = PeriodsFragment()
+                fragPrds.SetData(cueEventInfo?.periods)
+                frag = fragPrds
+            }
             else -> frag = DecriptionFragment()
         }
 

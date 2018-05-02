@@ -39,12 +39,19 @@ class DecriptionFragment : Fragment() {
         val _dtStart: TextView? = view?.findViewById(R.id.tvDtStart)
         val _dtEnd: TextView? = view?.findViewById(R.id.tvDtEnd)
 
+
         _tvDesc?.text = desc
-        _dtStart?.text = dt_start
-        _dtEnd?.text = dt_end
+
+        var dt: Date? = StringToDate(dt_start)
+        if (dt != null)
+            _dtStart?.text = dt.toString()
+
+        dt = StringToDate(dt_end)
+        if (dt != null)
+            _dtEnd?.text = dt.toString()
+
         _tvAddress?.text = address
 
-        val date: Date? = StringToDate(dt_end)
 
         return view
     }
