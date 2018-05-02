@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/nav_news" />
+        <item
+            android:id="@+id/nav_program"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Программа" />
+        <item
+            android:id="@+id/nav_speakers"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Спикеры" />
+        <item
+            android:id="@+id/nav_members"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Участники" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Выставка" />
+    </group>
+
+    <item android:title="Коммуникации">
+        <menu>
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Сообщение" />
+        </menu>
+    </item>
+
+</menu>
