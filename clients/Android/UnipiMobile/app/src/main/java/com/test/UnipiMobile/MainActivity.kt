@@ -1,12 +1,10 @@
 package com.test.UnipiMobile
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.CardView
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.LinearLayoutManager
@@ -21,9 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Response
 import android.text.Html
 import android.view.*
-import com.test.UnipiMobile.R.id.nav_view
-import com.test.UnipiMobile.R.id.toolbar
-import com.test.UnipiMobile.R.layout.activity_main
 import retrofit2.Retrofit
 import retrofit2.Callback
 
@@ -90,7 +85,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar)
 
         val toggle = ActionBarDrawerToggle(
                 this, activity_main, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -101,23 +96,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         posts = ArrayList<Event>()
 
-//        recyclerView = findViewById(R.id.posts_recycle_view) as RecyclerView
-//        val layoutManager: LinearLayoutManager = LinearLayoutManager(this)
-//        recyclerView!!.setLayoutManager(layoutManager)
-//
-//        val adapter: PostsAdapter = PostsAdapter(posts, { eventItem : Event -> eventItemClicked(eventItem) })
-//        recyclerView!!.setAdapter(adapter)
-//
-//        UnipiMobileApi.getEvents().enqueue(object: Callback<List<Event>?> {
-//            override fun onFailure(call: Call<List<Event>?>?, t: Throwable?) {
-//                Toast.makeText(this@MainActivity, "An error occurred during networking", Toast.LENGTH_SHORT).show()
-//            }
-//
-//            override fun onResponse(call: Call<List<Event>?>?, response: Response<List<Event>?>?) {
-//                posts?.addAll(response?.body()!!) //(response?.body())
-//                recyclerView?.getAdapter()?.notifyDataSetChanged()
-//            }
-//        })
+        recyclerView = findViewById(R.id.posts_recycle_view) as RecyclerView
+        val layoutManager: LinearLayoutManager = LinearLayoutManager(this)
+        recyclerView!!.setLayoutManager(layoutManager)
+
+        val adapter: PostsAdapter = PostsAdapter(posts, { eventItem : Event -> eventItemClicked(eventItem) })
+        recyclerView!!.setAdapter(adapter)
+
+        UnipiMobileApi.getEvents().enqueue(object: Callback<List<Event>?> {
+            override fun onFailure(call: Call<List<Event>?>?, t: Throwable?) {
+                Toast.makeText(this@MainActivity, "An error occurred during networking", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<List<Event>?>?, response: Response<List<Event>?>?) {
+                posts?.addAll(response?.body()!!) //(response?.body())
+                recyclerView?.getAdapter()?.notifyDataSetChanged()
+            }
+        })
 
 
     }
