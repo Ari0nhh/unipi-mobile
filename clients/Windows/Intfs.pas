@@ -2,7 +2,7 @@ unit Intfs;
 
 interface
 
-uses Classes, SysUtils;
+uses Classes, SysUtils, System.JSON;
 
 type
 	TServerData = record
@@ -14,6 +14,8 @@ type
     ['{A520DD7D-65CA-43D9-AB82-407D4BE83CFC}']
     	function IsValid() : Boolean;
         function GetLastError() : string;
+
+        function Execute(const AReqUrl : string) : TJSONObject;
 
         property Valid : Boolean read IsValid;
         property LastError : string read GetLastError;
