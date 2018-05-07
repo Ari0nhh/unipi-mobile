@@ -28,7 +28,6 @@ object MWnd: TMWnd
     Contexts = <>
     TabOrder = 4
     TabStop = False
-    ExplicitWidth = 713
     object dxTabEvents: TdxRibbonTab
       Active = True
       Caption = #1040#1076#1084#1080#1085#1080#1089#1090#1088#1080#1088#1086#1074#1072#1085#1080#1077
@@ -90,8 +89,8 @@ object MWnd: TMWnd
           Visible = True
           ItemName = 'dxBarRemEvent'
         end>
-      OneOnRow = True
-      Row = 2
+      OneOnRow = False
+      Row = 0
       UseOwnFont = False
       Visible = True
       WholeRow = False
@@ -122,8 +121,8 @@ object MWnd: TMWnd
           Visible = True
           ItemName = 'dxBarUpdate'
         end>
-      OneOnRow = True
-      Row = 1
+      OneOnRow = False
+      Row = 0
       UseOwnFont = False
       Visible = True
       WholeRow = False
@@ -154,7 +153,7 @@ object MWnd: TMWnd
           Visible = True
           ItemName = 'dxBarLogOut'
         end>
-      OneOnRow = True
+      OneOnRow = False
       Row = 0
       UseOwnFont = False
       Visible = True

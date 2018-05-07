@@ -4,7 +4,7 @@ interface
 
 uses
 	Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-	System.Classes, Vcl.Graphics, Intfs,
+	System.Classes, Vcl.Graphics, Intfs, System.JSON,
 	Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxClasses, dxBar, cxGraphics,
 	cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxRibbonSkins,
 	dxRibbonCustomizationForm, dxRibbon, dxBarExtItems, System.ImageList,
@@ -38,7 +38,7 @@ type
     	procedure InitServerList();
         procedure InitStartUI();
         procedure InitLoginGUI();
-        procedure DownloadEventData();
+        procedure DisplayEventData();
 	end;
 
 var
@@ -52,7 +52,7 @@ uses ServerList, LoginFormImpl, Session;
 
 { TMWnd }
 
-procedure TMWnd.DownloadEventData;
+procedure TMWnd.DisplayEventData();
 begin
 
 end;
@@ -73,14 +73,14 @@ begin
 		FSession := CreateSession(FServerList[dxBarServer.ItemIndex],
         	login.cxUserName.Text, login.cxPassword.Text);
 
-        if not FSession.Valid then begin
+        if not FSession.Valid  then begin
         	Application.MessageBox(PChar(FSession.LastError),
             	PChar('Login error'), MB_ICONSTOP);
             Exit;
         end;
 
         InitLoginGUI();
-        DownloadEventData();
+        DisplayEventData();
 
     finally
     	login.Free();

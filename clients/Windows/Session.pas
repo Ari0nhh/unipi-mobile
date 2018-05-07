@@ -2,31 +2,36 @@ unit Session;
 
 interface
 
-uses Classes, SysUtils, Intfs;
+uses Classes, SysUtils, Intfs, System.JSON;
 
 function CreateSession(const AServer : TServerData; const ALogin : string;
 	const APassword : string) : ISession;
 
 implementation
 
-uses REST.Client, REST.Authenticator.Simple;
+uses REST.Client, REST.Authenticator.Simple, REST.Types, IpPeerClient,
+	 IdHTTP, HTTPApp;
 
 type
     TSession = class(TInterfacedObject, ISession)
     public
     	constructor Create(const AServer : TServerData; const ALogin : string;
 							const APassword : string); reintroduce;
+        destructor Destroy(); override;
     protected //ISession
     	function IsValid() : Boolean;
         function GetLastError() : string;
+
+        function Execute(const AReqUrl : string) : TJSONObject;
 
         property Valid : Boolean read IsValid;
         property LastError : string read GetLastError;
     strict private
     	FValid     : Boolean;
         FLastError : string;
-        FClient    : TRestClient;
-        FAuth      : TSimpleAuthenticator;
+        FSession   : TIdHTTP;
+        FBaseUrl   : string;
+        procedure TryAuthorize(const ALogin : string; const APassword : string);
     end;
 
 function CreateSession(const AServer : TServerData; const ALogin : string;
@@ -43,13 +48,27 @@ begin
 	inherited Create();
 
     FValid := False;
-    FClient := TRESTClient.Create(Format('%s:%d',
-    				[AServer.FAddress, AServer.FPort]));
-    FClient.AllowCookies := True;
-    FClient.AcceptEncoding := 'utf-8';
+    FSession := TIdHTTP.Create();
+    FSession.AllowCookies := True;
+    FSession.HandleRedirects := True;
+    FSession.ReadTimeout := 30000;
+    //FBaseUrl := Format('http://%s:%d', [AServer.FAddress, AServer.FPort]);
+    //FSession.Request.Referer := FBaseUrl;
+    FSession.URL.Host := AServer.FAddress;
+    FSession.URL.Port := IntToStr(AServer.FPort);
 
-    FAuth := TSimpleAuthenticator.Create('email', 'password', ALogin, APassword);
-    FClient.Authenticator := FAuth;
+    TryAuthorize(ALogin, APassword);
+end;
+
+destructor TSession.Destroy;
+begin
+	FreeAndNil(FSession);
+	inherited;
+end;
+
+function TSession.Execute(const AReqUrl: string): TJSONObject;
+begin
+	Result := nil;
 end;
 
 function TSession.GetLastError: string;
@@ -60,6 +79,23 @@ end;
 function TSession.IsValid: Boolean;
 begin
 	Result := FValid;
+end;
+
+procedure TSession.TryAuthorize(const ALogin, APassword: string);
+var
+    params : TStringList;
+    resp   : string;
+begin
+    params := TStringList.Create();
+
+    try
+    	params.Add('email=' + ALogin);
+        params.Add('password=' + APassword);
+
+        resp := FSession.Post('/auth', params);
+    finally
+    	FreeAndNil(params);
+    end;
 end;
 
 end.

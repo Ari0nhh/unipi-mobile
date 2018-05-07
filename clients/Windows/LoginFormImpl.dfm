@@ -55,6 +55,7 @@ object LoginForm: TLoginForm
     Height = 25
     Caption = 'OK'
     Default = True
+    ModalResult = 1
     TabOrder = 1
   end
   object cxCancel: TcxButton
