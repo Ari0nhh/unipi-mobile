@@ -8,6 +8,14 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/posts_recycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorBackGround"/>
+
     <include
         layout="@layout/app_bar_main"
         android:layout_width="match_parent"
@@ -21,6 +29,9 @@
         android:background="@color/colorPrimaryDark"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:itemIconTint="@color/colorRosOrang"
+        app:menu="@menu/activity_main_drawer">
+
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
