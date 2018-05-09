@@ -11,6 +11,7 @@ module.exports =  function(router, passport, db)
             let data = {};
             data.id = user.usId;
             data.admin = user.usAdmin;
+            data.token = user.usToken;
 
             return res.json(data);
         })(req, res, next);

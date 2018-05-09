@@ -30,6 +30,7 @@ type
     	FValid     : Boolean;
         FLastError : string;
         FSession   : TIdHTTP;
+        FToken     : string;
         procedure TryAuthorize(const ALogin : string; const APassword : string);
         function  IsAdmin(const AResp : string) : Boolean;
     end;
@@ -90,14 +91,23 @@ begin
 
             if not Assigned(val) then begin
                 FLastError := 'Invalid auth REST format';
-                Exit(False);
+                Exit;
             end;
 
             adm := val.GetValue<Integer>();
-            if adm <> 0 then
-            	Exit(True);
+            if adm = 0 then begin
+            	FLastError := 'Your accound does not have sufficient rights';
+                Exit;
+            end;
 
-            FLastError := 'Your accound does not have sufficient rights';
+            val := obj.GetValue('token');
+            if not Assigned(val) then begin
+            	FLastError := 'Invalid auth REST format';
+                Exit;
+            end;
+
+            FToken := val.GetValue<string>();
+            Result := True;
         finally
         	obj.Free();
         end;
