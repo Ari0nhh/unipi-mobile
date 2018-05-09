@@ -55,10 +55,10 @@ module.exports = (sequelize, DataTypes) => {
             field: 'us_passw',
             allowNull: true
         },
-        usSalt: {
-            type: DataTypes.STRING(100),
-            field: 'us_salt',
-            allowNull: true
+        usAdmin: {
+            type: DataTypes.INTEGER,
+            field: 'us_admin',
+            allowNull: false
         }
     }, {
         schema: 'public',
