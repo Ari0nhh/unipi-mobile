@@ -59,6 +59,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             field: 'us_admin',
             allowNull: false
+        },
+        usToken: {
+            type: DataTypes.STRING(200),
+            field: 'us_token',
+            allowNull: false
         }
     }, {
         schema: 'public',
