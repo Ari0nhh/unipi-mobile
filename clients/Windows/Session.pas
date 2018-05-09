@@ -30,7 +30,6 @@ type
     	FValid     : Boolean;
         FLastError : string;
         FSession   : TIdHTTP;
-        FBaseUrl   : string;
         procedure TryAuthorize(const ALogin : string; const APassword : string);
         function  IsAdmin(const AResp : string) : Boolean;
     end;
