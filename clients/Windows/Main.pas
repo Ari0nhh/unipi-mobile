@@ -8,12 +8,16 @@ uses
 	Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxClasses, dxBar, cxGraphics,
 	cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxRibbonSkins,
 	dxRibbonCustomizationForm, dxRibbon, dxBarExtItems, System.ImageList,
-	Vcl.ImgList, Generics.Collections, cxDropDownEdit, cxBarEditItem;
+	Vcl.ImgList, Generics.Collections, cxDropDownEdit, cxBarEditItem, Vcl.ExtCtrls,
+    cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator,
+    Data.DB, cxDBData, cxGridCustomTableView, cxGridCardView, cxGridDBCardView,
+    Datasnap.DBClient, cxGridCustomView, cxGridCustomLayoutView, cxGridLevel,
+    cxGrid;
 
 type
 	TMWnd = class(TForm)
 		dxBars: TdxBarManager;
-		dxTabEvents: TdxRibbonTab;
+    	dxTabAdmin: TdxRibbonTab;
 		dxRibbon: TdxRibbon;
 		dxManageEventsBar: TdxBar;
 		dxFilterEventsBar: TdxBar;
@@ -28,10 +32,34 @@ type
 		dxBarUpdate: TdxBarLargeButton;
     	dxBarLogOut: TdxBarLargeButton;
    	 	cxBarServer: TcxBarEditItem;
+        dxTabEvents: TdxRibbonTab;
+        dxBarSelection: TdxBar;
+        dxBarSelEvents: TdxBarLargeButton;
+        dxBarSelUsers: TdxBarLargeButton;
+        dxBarFiles: TdxBarLargeButton;
+        dxBarVideo: TdxBarLargeButton;
+        pnlEvents: TPanel;
+        cxEvtLevel: TcxGridLevel;
+        cxEvtGrid: TcxGrid;
+        cxEvtView: TcxGridDBCardView;
+        dsEvents: TDataSource;
+        clEvents: TClientDataSet;
+        cxEvtViewclEvtID: TcxGridDBCardViewRow;
+        cxEvtViewclEvtName: TcxGridDBCardViewRow;
+        cxEvtViewclEvtStart: TcxGridDBCardViewRow;
+        cxEvtViewclEvtEnd: TcxGridDBCardViewRow;
+        cxEvtViewclEvtInt: TcxGridDBCardViewRow;
+        cxStyleRep: TcxStyleRepository;
+        cxStyleInternal: TcxStyle;
     	procedure dxBtnSrvEditClick(Sender: TObject);
     	procedure FormCreate(Sender: TObject);
     	procedure FormDestroy(Sender: TObject);
     	procedure dxBarBtnLoginClick(Sender: TObject);
+        procedure cxEvtViewStylesGetCaptionRowStyle(Sender: TcxCustomGridTableView;
+          ARecord: TcxCustomGridRecord; AItem: TcxCustomGridTableItem;
+          var AStyle: TcxStyle);
+    	procedure dxBarSelEventsClick(Sender: TObject);
+    	procedure dxBarLogOutClick(Sender: TObject);
 	strict private
         FServerList : TList<TServerData>;
         FSession    : ISession;
@@ -40,9 +68,11 @@ type
         procedure InitStartUI();
         procedure InitLoginGUI();
         procedure DisplayEventData();
+        procedure DoLogOut();
     strict private
     	procedure SaveSettings();
         procedure LoadSettings();
+        function _ToDate(const AVal : string) : TDateTime;
 	end;
 
 var
@@ -56,9 +86,77 @@ uses ServerList, LoginFormImpl, Session, Registry;
 
 { TMWnd }
 
-procedure TMWnd.DisplayEventData();
+procedure TMWnd.cxEvtViewStylesGetCaptionRowStyle(
+  Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
+  AItem: TcxCustomGridTableItem; var AStyle: TcxStyle);
 begin
+	if ARecord.Values[4] <> 0 then
+    	AStyle := cxStyleInternal;
+end;
 
+procedure TMWnd.DisplayEventData();
+var
+	events : TJSONValue;
+    arr : TJSONArray;
+    i   : Integer;
+    obj : TJSONObject;
+begin
+	events := FSession.Execute('REST/events');
+    if not Assigned(events) then
+    	Exit;
+
+    if not (events is TJSONArray) then
+    	Exit;
+
+    arr := events as TJSONArray;
+
+    try
+        cxEvtView.BeginUpdate();
+    	clEvents.DisableControls();
+
+        clEvents.EmptyDataSet();
+
+        for i:=0 to arr.Count-1 do begin
+        	obj := arr.Items[i] as TJSONObject;
+
+            clEvents.Append();
+            clEvents.Fields[0].Value := obj.GetValue('evt_id').GetValue<Integer>();
+            clEvents.Fields[1].Value := obj.GetValue('evt_name').GetValue<string>();
+            clEvents.Fields[2].Value := _ToDate(obj.GetValue('evt_date_start').GetValue<string>());
+            clEvents.Fields[3].Value := _ToDate(obj.GetValue('evt_date_end').GetValue<string>());
+            clEvents.Fields[4].Value := obj.GetValue('evt_internal').GetValue<Boolean>();
+            clEvents.Post();
+        end;
+    finally
+    	clEvents.EnableControls();
+        cxEvtView.EndUpdate();
+    end;
+
+    pnlEvents.Align := alClient;
+    pnlEvents.Visible := True;
+    dxRibbon.Contexts[0].Activate();
+    dxBarSelEvents.Down := True;
+end;
+
+procedure TMWnd.DoLogOut;
+begin
+	dxBarBtnLogin.Visible := ivAlways;
+    dxBarLogOut.Visible := ivNever;
+
+    dxBarAddEvent.Enabled := False;
+    dxBarRemEvent.Enabled := False;
+    dxBarEventKind.Enabled := False;
+    dxBarDate.Enabled := False;
+    dxBarUpdate.Enabled := False;
+
+    dxBarSelEvents.Enabled := False;
+    dxBarSelEvents.Down := False;
+    dxBarSelUsers.Enabled := False;
+
+    dxRibbon.Contexts[0].Visible := False;
+
+    pnlEvents.Visible := False;
+    FSession := nil;
 end;
 
 procedure TMWnd.dxBarBtnLoginClick(Sender: TObject);
@@ -92,6 +190,16 @@ begin
     finally
     	login.Free();
     end;
+end;
+
+procedure TMWnd.dxBarLogOutClick(Sender: TObject);
+begin
+	DoLogOut();
+end;
+
+procedure TMWnd.dxBarSelEventsClick(Sender: TObject);
+begin
+	DisplayEventData();
 end;
 
 procedure TMWnd.dxBtnSrvEditClick(Sender: TObject);
@@ -131,6 +239,9 @@ begin
     dxBarEventKind.Enabled := True;
     dxBarDate.Enabled := True;
     dxBarUpdate.Enabled := True;
+
+    dxBarSelEvents.Enabled := True;
+    dxBarSelUsers.Enabled := True;
 end;
 
 procedure TMWnd.InitServerList;
@@ -223,6 +334,24 @@ begin
     finally
     	reg.Free();
     end;
+end;
+
+function TMWnd._ToDate(const AVal: string): TDateTime;
+var
+	y, m, d : Word;
+    str : string;
+begin
+    //"2018-05-18T19:00:00.000Z"
+	str := Copy(Aval, 1, 4);
+    y := StrToInt(str);
+
+    str := Copy(AVal, 6, 2);
+    m := StrToInt(str);
+
+    str := Copy(AVal, 9, 2);
+    d := StrToInt(str);
+
+    Result := EncodeDate(y, m, d);
 end;
 
 end.
