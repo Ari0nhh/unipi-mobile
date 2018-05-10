@@ -15,7 +15,7 @@ type
     	function IsValid() : Boolean;
         function GetLastError() : string;
 
-        function Execute(const AReqUrl : string) : TJSONObject;
+        function Execute(const AReqUrl : string) : TJSONValue;
 
         property Valid : Boolean read IsValid;
         property LastError : string read GetLastError;

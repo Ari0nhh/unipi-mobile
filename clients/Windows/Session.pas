@@ -22,7 +22,7 @@ type
     	function IsValid() : Boolean;
         function GetLastError() : string;
 
-        function Execute(const AReqUrl : string) : TJSONObject;
+        function Execute(const AReqUrl : string) : TJSONValue;
 
         property Valid : Boolean read IsValid;
         property LastError : string read GetLastError;
@@ -53,8 +53,6 @@ begin
     FSession.AllowCookies := True;
     FSession.HandleRedirects := True;
     FSession.ReadTimeout := 30000;
-    //FBaseUrl := Format('http://%s:%d', [AServer.FAddress, AServer.FPort]);
-    //FSession.Request.Referer := FBaseUrl;
     FSession.URL.Host := AServer.FAddress;
     FSession.URL.Port := IntToStr(AServer.FPort);
 
@@ -67,9 +65,17 @@ begin
 	inherited;
 end;
 
-function TSession.Execute(const AReqUrl: string): TJSONObject;
+function TSession.Execute(const AReqUrl: string): TJSONValue;
+var
+	url, resp : string;
 begin
 	Result := nil;
+    url := AReqUrl + '/?access_token=' + FToken;
+    try
+    	resp := FSession.Get(url);
+        Result := TJSONObject.ParseJSONValue(resp);
+    except
+    end;
 end;
 
 function TSession.GetLastError: string;

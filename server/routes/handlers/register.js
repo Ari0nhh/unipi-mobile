@@ -15,7 +15,7 @@ module.exports = function(router, passport, db)
         data.usToken = rs.generate(60);
 
         let User = db.Model.DwUser;
-              
+
         User.create(data).then(cUser =>{
             res.json({id : cUser.usId, token : cUser.usToken})
         }).catch(error => {
