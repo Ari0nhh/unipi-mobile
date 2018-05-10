@@ -30,8 +30,9 @@ type
     	FValid     : Boolean;
         FLastError : string;
         FSession   : TIdHTTP;
-        FBaseUrl   : string;
+        FToken     : string;
         procedure TryAuthorize(const ALogin : string; const APassword : string);
+        function  IsAdmin(const AResp : string) : Boolean;
     end;
 
 function CreateSession(const AServer : TServerData; const ALogin : string;
@@ -76,6 +77,46 @@ begin
 	Result := FLastError;
 end;
 
+function TSession.IsAdmin(const AResp: string): Boolean;
+var
+	obj : TJSONObject;
+    val : TJSONValue;
+    adm : Integer;
+begin
+    Result := False;
+    try
+		obj := TJSONObject.ParseJSONValue(AResp) as TJSONObject;
+        try
+            val := obj.GetValue('admin');
+
+            if not Assigned(val) then begin
+                FLastError := 'Invalid auth REST format';
+                Exit;
+            end;
+
+            adm := val.GetValue<Integer>();
+            if adm = 0 then begin
+            	FLastError := 'Your accound does not have sufficient rights';
+                Exit;
+            end;
+
+            val := obj.GetValue('token');
+            if not Assigned(val) then begin
+            	FLastError := 'Invalid auth REST format';
+                Exit;
+            end;
+
+            FToken := val.GetValue<string>();
+            Result := True;
+        finally
+        	obj.Free();
+        end;
+    except
+    	on E : Exception do
+        	FLastError := E.Message;
+    end;
+end;
+
 function TSession.IsValid: Boolean;
 begin
 	Result := FValid;
@@ -92,7 +133,14 @@ begin
     	params.Add('email=' + ALogin);
         params.Add('password=' + APassword);
 
-        resp := FSession.Post('/auth', params);
+        try
+        	resp := FSession.Post('/auth', params);
+            FValid := IsAdmin(resp);
+        except
+        	on E : Exception do begin
+            	FLastError := E.Message;
+            end;
+        end;
     finally
     	FreeAndNil(params);
     end;

@@ -12,6 +12,7 @@ let passport = require('passport');
 let db = require('./model');
 
 require('./auth')(passport, db.Model.DwUser);
+require('./auth/bearer')(passport, db.Model.DwUser);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,7 +21,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 
 app.use(session({secret : 'old donkey ears',
-    resave : false,
+    resave : true,
     saveUninitialized : false}));
 app.use(cookieParser());
 app.use(bodyParser.json());

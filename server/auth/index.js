@@ -11,10 +11,8 @@ module.exports = function(passport, user) {
 
         (req, username, password, done) =>
         {
-            console.log('Password::login');
             user.findOne({where : {usEmail: username}}).then((locUser) =>
             {
-                console.log(locUser);
                 if(!locUser)
                     return done(null, false);
 
@@ -36,7 +34,7 @@ module.exports = function(passport, user) {
         {
             if(login)
             {
-                done(null, login.get());
+                done(null, login);
             }else
             {
                 done(login.errors, null);

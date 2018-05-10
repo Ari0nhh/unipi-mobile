@@ -8,7 +8,7 @@ uses
 	Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxClasses, dxBar, cxGraphics,
 	cxControls, cxLookAndFeels, cxLookAndFeelPainters, dxRibbonSkins,
 	dxRibbonCustomizationForm, dxRibbon, dxBarExtItems, System.ImageList,
-	Vcl.ImgList, Generics.Collections;
+	Vcl.ImgList, Generics.Collections, cxDropDownEdit, cxBarEditItem;
 
 type
 	TMWnd = class(TForm)
@@ -18,7 +18,6 @@ type
 		dxManageEventsBar: TdxBar;
 		dxFilterEventsBar: TdxBar;
 		dxBarLogin: TdxBar;
-		dxBarServer: TdxBarCombo;
 		dxBtnSrvEdit: TdxBarButton;
 		dxBarBtnLogin: TdxBarLargeButton;
 		cxLarge: TcxImageList;
@@ -28,6 +27,7 @@ type
 		dxBarDate: TdxBarDateCombo;
 		dxBarUpdate: TdxBarLargeButton;
     	dxBarLogOut: TdxBarLargeButton;
+   	 	cxBarServer: TcxBarEditItem;
     	procedure dxBtnSrvEditClick(Sender: TObject);
     	procedure FormCreate(Sender: TObject);
     	procedure FormDestroy(Sender: TObject);
@@ -35,10 +35,14 @@ type
 	strict private
         FServerList : TList<TServerData>;
         FSession    : ISession;
+        FDefServer  : Integer;
     	procedure InitServerList();
         procedure InitStartUI();
         procedure InitLoginGUI();
         procedure DisplayEventData();
+    strict private
+    	procedure SaveSettings();
+        procedure LoadSettings();
 	end;
 
 var
@@ -48,7 +52,7 @@ implementation
 
 {$R *.dfm}
 
-uses ServerList, LoginFormImpl, Session;
+uses ServerList, LoginFormImpl, Session, Registry;
 
 { TMWnd }
 
@@ -60,6 +64,7 @@ end;
 procedure TMWnd.dxBarBtnLoginClick(Sender: TObject);
 var
 	login : TLoginForm;
+    idx   : Integer;
 begin
 	login := TLoginForm.Create(Self);
 
@@ -67,10 +72,12 @@ begin
     	if login.ShowModal() <> mrOK then
         	Exit;
 
-        if dxBarServer.ItemIndex = -1 then
+        idx := TcxComboBoxProperties(cxBarServer.Properties).Items.IndexOf(cxBarServer.EditValue);
+
+        if idx = -1 then
         	Exit;
 
-		FSession := CreateSession(FServerList[dxBarServer.ItemIndex],
+		FSession := CreateSession(FServerList[idx],
         	login.cxUserName.Text, login.cxPassword.Text);
 
         if not FSession.Valid  then begin
@@ -104,11 +111,13 @@ end;
 procedure TMWnd.FormCreate(Sender: TObject);
 begin
     InitServerList();
+    LoadSettings();
     InitStartUI();
 end;
 
 procedure TMWnd.FormDestroy(Sender: TObject);
 begin
+    SaveSettings();
 	FreeAndNil(FServerList);
 end;
 
@@ -131,6 +140,7 @@ var
     srv : TServerData;
 begin
 	FServerList := TList<TServerData>.Create();
+    FDefServer := -1;
 
     sl  := TStringList.Create();
 
@@ -168,13 +178,51 @@ var
 	srv : TServerData;
 begin
 	for srv in FServerList do begin
-    	dxBarServer.Items.Add(Format('%s:%d', [srv.FAddress, srv.FPort]));
+    	TcxComboBoxProperties(cxBarServer.Properties).Items.Add(Format('%s:%d', [srv.FAddress, srv.FPort]));
     end;
 
-    if FServerList.Count > 0 then
-    	dxBarServer.ItemIndex := 0;
+    if FServerList.Count > 0 then begin
+        if (FDefServer < 0) or (FDefServer >= FServerList.Count) then
+        	FDefServer := 0;
+    	cxBarServer.EditValue := TcxComboBoxProperties(cxBarServer.Properties).Items[FDefServer];
+    end;
 
     dxBarBtnLogin.Enabled := (FServerList.Count > 0);
+end;
+
+procedure TMWnd.LoadSettings;
+var
+	reg : TRegistry;
+begin
+	reg := TRegistry.Create();
+    try
+        reg.RootKey := HKEY_CURRENT_USER;
+
+        if not reg.OpenKey('Software\H&H Inc\unipiAdmin', False) then
+        	Exit;
+
+        if reg.ValueExists('DefServer') then
+        	FDefServer := reg.ReadInteger('DefServer');
+    finally
+    	reg.Free();
+    end;
+end;
+
+procedure TMWnd.SaveSettings;
+var
+	reg : TRegistry;
+begin
+	reg := TRegistry.Create();
+    try
+    	reg.RootKey := HKEY_CURRENT_USER;
+        if not reg.OpenKey('Software\H&H Inc\unipiAdmin', True) then
+        	Exit;
+
+        FDefServer := TcxComboBoxProperties(cxBarServer.Properties).Items.IndexOf(cxBarServer.EditValue);
+        reg.WriteInteger('DefServer', FDefServer);
+    finally
+    	reg.Free();
+    end;
 end;
 
 end.
