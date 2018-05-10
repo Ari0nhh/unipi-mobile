@@ -113,8 +113,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 recyclerView?.getAdapter()?.notifyDataSetChanged()
             }
         })
-
-
     }
 
     override fun onBackPressed() {
