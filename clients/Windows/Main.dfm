@@ -29,9 +29,8 @@ object MWnd: TMWnd
       item
         Color = 10498221
       end>
-    TabOrder = 4
+    TabOrder = 3
     TabStop = False
-    ExplicitWidth = 909
     object dxTabAdmin: TdxRibbonTab
       Active = True
       Caption = #1040#1076#1084#1080#1085#1080#1089#1090#1088#1080#1088#1086#1074#1072#1085#1080#1077
@@ -76,9 +75,6 @@ object MWnd: TMWnd
       Height = 217
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = -16
-      ExplicitWidth = 345
-      ExplicitHeight = 281
       object cxEvtView: TcxGridDBCardView
         Navigator.Buttons.CustomButtons = <>
         DataController.DataSource = dsEvents
@@ -231,8 +227,8 @@ object MWnd: TMWnd
           Visible = True
           ItemName = 'dxBarLogOut'
         end>
-      OneOnRow = True
-      Row = 1
+      OneOnRow = False
+      Row = 0
       UseOwnFont = False
       Visible = True
       WholeRow = False
@@ -263,7 +259,7 @@ object MWnd: TMWnd
           Visible = True
           ItemName = 'dxBarVideo'
         end>
-      OneOnRow = True
+      OneOnRow = False
       Row = 0
       UseOwnFont = False
       Visible = True

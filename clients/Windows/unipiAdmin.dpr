@@ -6,7 +6,8 @@ uses
   ServerList in 'ServerList.pas' {SrvList},
   Intfs in 'Intfs.pas',
   LoginFormImpl in 'LoginFormImpl.pas' {LoginForm},
-  Session in 'Session.pas';
+  Session in 'Session.pas',
+  EventDataFrame in 'EventDataFrame.pas' {EventData: TFrame};
 
 {$R *.res}
 
