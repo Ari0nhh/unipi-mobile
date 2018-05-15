@@ -12,7 +12,13 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Настройки</string>
     <string name="nav_news">Лента новостей</string>
+    <string name="nav_programs">Программа</string>
+    <string name="nav_speakers">Спикеры</string>
+    <string name="nav_members">Участники</string>
+    <string name="nav_manage">Выставка</string>
+    <string name="nav_send">Сообщение</string>
     <string name="Search">Поиск</string>
+    <string name="nav_communication">Коммуникации</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -26,4 +32,5 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
 </resources>
