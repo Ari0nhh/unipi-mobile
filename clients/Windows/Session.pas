@@ -10,7 +10,7 @@ function CreateSession(const AServer : TServerData; const ALogin : string;
 implementation
 
 uses REST.Client, REST.Authenticator.Simple, REST.Types, IpPeerClient,
-	 IdHTTP, HTTPApp;
+	 IdHTTP, HTTPApp, IdURI;
 
 type
     TSession = class(TInterfacedObject, ISession)
@@ -67,12 +67,13 @@ end;
 
 function TSession.Execute(const AReqUrl: string): TJSONValue;
 var
-	url, resp : string;
+	resp : string;
 begin
 	Result := nil;
-    url := AReqUrl + '/?access_token=' + FToken;
     try
-    	resp := FSession.Get(url);
+        FSession.URL.Document := AReqUrl;
+        FSession.URL.Params := 'access_token=' + FToken;
+        resp := FSession.Get(FSession.URL.URI);
         Result := TJSONObject.ParseJSONValue(resp);
     except
     end;

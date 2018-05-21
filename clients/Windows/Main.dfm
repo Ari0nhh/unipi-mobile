@@ -29,7 +29,7 @@ object MWnd: TMWnd
       item
         Color = 10498221
       end>
-    TabOrder = 3
+    TabOrder = 2
     TabStop = False
     object dxTabAdmin: TdxRibbonTab
       Active = True
@@ -77,6 +77,7 @@ object MWnd: TMWnd
       TabOrder = 0
       object cxEvtView: TcxGridDBCardView
         Navigator.Buttons.CustomButtons = <>
+        OnCellDblClick = cxEvtViewCellDblClick
         DataController.DataSource = dsEvents
         DataController.Summary.DefaultGroupSummaryItems = <>
         DataController.Summary.FooterSummaryItems = <>
@@ -120,6 +121,73 @@ object MWnd: TMWnd
       end
       object cxEvtLevel: TcxGridLevel
         GridView = cxEvtView
+      end
+    end
+  end
+  object pnlEvtData: TPanel
+    Left = 296
+    Top = 144
+    Width = 273
+    Height = 217
+    BevelOuter = bvNone
+    TabOrder = 6
+    Visible = False
+    inline EvtFrame: TEventData
+      Left = 0
+      Top = 0
+      Width = 273
+      Height = 217
+      Align = alClient
+      TabOrder = 0
+      ExplicitLeft = -920
+      ExplicitTop = -359
+      inherited pnlLeft: TPanel
+        Height = 217
+        inherited cxGroupBox2: TcxGroupBox
+          inherited cxEvtData: TcxVerticalGrid
+            Version = 1
+            inherited cxEvtDataCategoryRow1: TcxCategoryRow
+              ID = 0
+              ParentID = -1
+              Index = 0
+              Version = 1
+            end
+            inherited cxEvtName: TcxEditorRow
+              ID = 1
+              ParentID = 0
+              Index = 0
+              Version = 1
+            end
+            inherited cxEvtDateStart: TcxEditorRow
+              ID = 2
+              ParentID = 0
+              Index = 1
+              Version = 1
+            end
+            inherited cxEvtDateEnd: TcxEditorRow
+              Properties.Value = Null
+              ID = 3
+              ParentID = 0
+              Index = 2
+              Version = 1
+            end
+            inherited cxEvtInternal: TcxEditorRow
+              ID = 4
+              ParentID = 0
+              Index = 3
+              Version = 1
+            end
+            inherited cxEvtAddress: TcxEditorRow
+              ID = 5
+              ParentID = 0
+              Index = 4
+              Version = 1
+            end
+          end
+        end
+      end
+      inherited pnlHost: TPanel
+        Height = 217
       end
     end
   end

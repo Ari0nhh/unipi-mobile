@@ -12,7 +12,7 @@ uses
     cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator,
     Data.DB, cxDBData, cxGridCustomTableView, cxGridCardView, cxGridDBCardView,
     Datasnap.DBClient, cxGridCustomView, cxGridCustomLayoutView, cxGridLevel,
-    cxGrid;
+    cxGrid, EventDataFrame;
 
 type
 	TMWnd = class(TForm)
@@ -51,6 +51,8 @@ type
         cxEvtViewclEvtInt: TcxGridDBCardViewRow;
         cxStyleRep: TcxStyleRepository;
         cxStyleInternal: TcxStyle;
+    	pnlEvtData: TPanel;
+    	EvtFrame: TEventData;
     	procedure dxBtnSrvEditClick(Sender: TObject);
     	procedure FormCreate(Sender: TObject);
     	procedure FormDestroy(Sender: TObject);
@@ -60,6 +62,9 @@ type
           var AStyle: TcxStyle);
     	procedure dxBarSelEventsClick(Sender: TObject);
     	procedure dxBarLogOutClick(Sender: TObject);
+        procedure cxEvtViewCellDblClick(Sender: TcxCustomGridTableView;
+          ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+          AShift: TShiftState; var AHandled: Boolean);
 	strict private
         FServerList : TList<TServerData>;
         FSession    : ISession;
@@ -72,7 +77,7 @@ type
     strict private
     	procedure SaveSettings();
         procedure LoadSettings();
-        function _ToDate(const AVal : string) : TDateTime;
+        procedure KillContexts();
 	end;
 
 var
@@ -85,6 +90,22 @@ implementation
 uses ServerList, LoginFormImpl, Session, Registry;
 
 { TMWnd }
+
+procedure TMWnd.cxEvtViewCellDblClick(Sender: TcxCustomGridTableView;
+  ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+  AShift: TShiftState; var AHandled: Boolean);
+begin
+	if clEvents.Eof then
+    	Exit;
+
+	KillContexts();
+    pnlEvents.Visible := False;
+
+    EvtFrame.PopulateEventData(FSession, clEvents.Fields[0].AsInteger);
+
+    pnlEvtData.Align := alClient;
+    pnlEvtData.Visible := True;
+end;
 
 procedure TMWnd.cxEvtViewStylesGetCaptionRowStyle(
   Sender: TcxCustomGridTableView; ARecord: TcxCustomGridRecord;
@@ -153,9 +174,11 @@ begin
     dxBarSelEvents.Down := False;
     dxBarSelUsers.Enabled := False;
 
-    dxRibbon.Contexts[0].Visible := False;
+    KillContexts();
 
     pnlEvents.Visible := False;
+    pnlEvtData.Visible := False;
+
     FSession := nil;
 end;
 
@@ -301,6 +324,14 @@ begin
     dxBarBtnLogin.Enabled := (FServerList.Count > 0);
 end;
 
+procedure TMWnd.KillContexts;
+var
+	i : Integer;
+begin
+	for i:=0 to dxRibbon.Contexts.Count-1 do
+    	dxRibbon.Contexts[i].Visible := False;
+end;
+
 procedure TMWnd.LoadSettings;
 var
 	reg : TRegistry;
@@ -336,22 +367,6 @@ begin
     end;
 end;
 
-function TMWnd._ToDate(const AVal: string): TDateTime;
-var
-	y, m, d : Word;
-    str : string;
-begin
-    //"2018-05-18T19:00:00.000Z"
-	str := Copy(Aval, 1, 4);
-    y := StrToInt(str);
 
-    str := Copy(AVal, 6, 2);
-    m := StrToInt(str);
-
-    str := Copy(AVal, 9, 2);
-    d := StrToInt(str);
-
-    Result := EncodeDate(y, m, d);
-end;
 
 end.
