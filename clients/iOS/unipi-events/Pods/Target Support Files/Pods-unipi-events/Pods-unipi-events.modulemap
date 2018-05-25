@@ -1,0 +1,6 @@
+module Pods_unipi_events [system] {
+  umbrella header "Pods-unipi-events-umbrella.h"
+
+  export *
+  module * { export * }
+}

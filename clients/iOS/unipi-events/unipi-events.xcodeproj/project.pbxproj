@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60F7D8C5FE9535FE0537D072 /* libPods-unipi-events.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 659388C62F84FCE55749B8DD /* libPods-unipi-events.a */; };
+		741C0B27209B609C00C0B0B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 741C0B26209B609C00C0B0B7 /* Assets.xcassets */; };
+		746CD38C20A4C26C00B75CFB /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746CD38B20A4C26C00B75CFB /* EventTableViewCell.swift */; };
 		74C00FD82092231300C25294 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C00FD72092231300C25294 /* AppDelegate.swift */; };
-		74C00FDA2092231300C25294 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C00FD92092231300C25294 /* ViewController.swift */; };
+		74C00FDA2092231300C25294 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C00FD92092231300C25294 /* EventTableViewController.swift */; };
 		74C00FDD2092231300C25294 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C00FDB2092231300C25294 /* Main.storyboard */; };
-		74C00FDF2092231300C25294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74C00FDE2092231300C25294 /* Assets.xcassets */; };
 		74C00FE22092231300C25294 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74C00FE02092231300C25294 /* LaunchScreen.storyboard */; };
 		74C00FED2092231400C25294 /* unipi_eventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C00FEC2092231400C25294 /* unipi_eventsTests.swift */; };
+		74F03EDC209BBF91004FF4B3 /* calend.svg in Resources */ = {isa = PBXBuildFile; fileRef = 74F03EDB209BBF91004FF4B3 /* calend.svg */; };
+		93C78AB520B5738E093E891F /* libPods-unipi-eventsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97C0AA563F1169296A1F232A /* libPods-unipi-eventsTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +30,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4FACB2878B3724820FD34DF0 /* Pods-unipi-events.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unipi-events.debug.xcconfig"; path = "Pods/Target Support Files/Pods-unipi-events/Pods-unipi-events.debug.xcconfig"; sourceTree = "<group>"; };
+		659388C62F84FCE55749B8DD /* libPods-unipi-events.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-unipi-events.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		741C0B26209B609C00C0B0B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		746CD38B20A4C26C00B75CFB /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		74C00FD42092231300C25294 /* unipi-events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "unipi-events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C00FD72092231300C25294 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		74C00FD92092231300C25294 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		74C00FD92092231300C25294 /* EventTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		74C00FDC2092231300C25294 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		74C00FDE2092231300C25294 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74C00FE12092231300C25294 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74C00FE32092231300C25294 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74C00FE82092231300C25294 /* unipi-eventsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "unipi-eventsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74C00FEC2092231400C25294 /* unipi_eventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = unipi_eventsTests.swift; sourceTree = "<group>"; };
 		74C00FEE2092231400C25294 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74F03EDB209BBF91004FF4B3 /* calend.svg */ = {isa = PBXFileReference; lastKnownFileType = text; name = calend.svg; path = Assets.xcassets/calend.svg; sourceTree = "<group>"; };
+		8345B37E840C4747D459F73F /* Pods-unipi-events.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unipi-events.release.xcconfig"; path = "Pods/Target Support Files/Pods-unipi-events/Pods-unipi-events.release.xcconfig"; sourceTree = "<group>"; };
+		8FC3AD40686A1CBF6DE449F9 /* Pods-unipi-eventsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unipi-eventsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-unipi-eventsTests/Pods-unipi-eventsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		97C0AA563F1169296A1F232A /* libPods-unipi-eventsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-unipi-eventsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF2B07063716AF57B242D339 /* Pods-unipi-eventsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-unipi-eventsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-unipi-eventsTests/Pods-unipi-eventsTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60F7D8C5FE9535FE0537D072 /* libPods-unipi-events.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C78AB520B5738E093E891F /* libPods-unipi-eventsTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +76,8 @@
 				74C00FD62092231300C25294 /* unipi-events */,
 				74C00FEB2092231400C25294 /* unipi-eventsTests */,
 				74C00FD52092231300C25294 /* Products */,
+				DCABC6DD915C27547E7126B2 /* Pods */,
+				C11B239FADC57E053A92FAEF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,10 +93,12 @@
 		74C00FD62092231300C25294 /* unipi-events */ = {
 			isa = PBXGroup;
 			children = (
+				74F03EDB209BBF91004FF4B3 /* calend.svg */,
+				741C0B26209B609C00C0B0B7 /* Assets.xcassets */,
 				74C00FD72092231300C25294 /* AppDelegate.swift */,
-				74C00FD92092231300C25294 /* ViewController.swift */,
+				74C00FD92092231300C25294 /* EventTableViewController.swift */,
+				746CD38B20A4C26C00B75CFB /* EventTableViewCell.swift */,
 				74C00FDB2092231300C25294 /* Main.storyboard */,
-				74C00FDE2092231300C25294 /* Assets.xcassets */,
 				74C00FE02092231300C25294 /* LaunchScreen.storyboard */,
 				74C00FE32092231300C25294 /* Info.plist */,
 			);
@@ -96,6 +114,26 @@
 			path = "unipi-eventsTests";
 			sourceTree = "<group>";
 		};
+		C11B239FADC57E053A92FAEF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				659388C62F84FCE55749B8DD /* libPods-unipi-events.a */,
+				97C0AA563F1169296A1F232A /* libPods-unipi-eventsTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DCABC6DD915C27547E7126B2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4FACB2878B3724820FD34DF0 /* Pods-unipi-events.debug.xcconfig */,
+				8345B37E840C4747D459F73F /* Pods-unipi-events.release.xcconfig */,
+				8FC3AD40686A1CBF6DE449F9 /* Pods-unipi-eventsTests.debug.xcconfig */,
+				FF2B07063716AF57B242D339 /* Pods-unipi-eventsTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,6 +141,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 74C00FF12092231400C25294 /* Build configuration list for PBXNativeTarget "unipi-events" */;
 			buildPhases = (
+				3D862707A7E79E36FAE5197A /* [CP] Check Pods Manifest.lock */,
 				74C00FD02092231300C25294 /* Sources */,
 				74C00FD12092231300C25294 /* Frameworks */,
 				74C00FD22092231300C25294 /* Resources */,
@@ -120,6 +159,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 74C00FF42092231400C25294 /* Build configuration list for PBXNativeTarget "unipi-eventsTests" */;
 			buildPhases = (
+				484E039BE35B00FE118C8B82 /* [CP] Check Pods Manifest.lock */,
 				74C00FE42092231300C25294 /* Sources */,
 				74C00FE52092231300C25294 /* Frameworks */,
 				74C00FE62092231300C25294 /* Resources */,
@@ -146,6 +186,11 @@
 				TargetAttributes = {
 					74C00FD32092231300C25294 = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					74C00FE72092231300C25294 = {
 						CreatedOnToolsVersion = 9.3;
@@ -178,8 +223,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				74C00FE22092231300C25294 /* LaunchScreen.storyboard in Resources */,
-				74C00FDF2092231300C25294 /* Assets.xcassets in Resources */,
+				741C0B27209B609C00C0B0B7 /* Assets.xcassets in Resources */,
 				74C00FDD2092231300C25294 /* Main.storyboard in Resources */,
+				74F03EDC209BBF91004FF4B3 /* calend.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,12 +238,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3D862707A7E79E36FAE5197A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-unipi-events-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		484E039BE35B00FE118C8B82 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-unipi-eventsTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		74C00FD02092231300C25294 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74C00FDA2092231300C25294 /* ViewController.swift in Sources */,
+				746CD38C20A4C26C00B75CFB /* EventTableViewCell.swift in Sources */,
+				74C00FDA2092231300C25294 /* EventTableViewController.swift in Sources */,
 				74C00FD82092231300C25294 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,8 +442,9 @@
 		};
 		74C00FF22092231400C25294 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FACB2878B3724820FD34DF0 /* Pods-unipi-events.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-twitter";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7FL927P776;
 				INFOPLIST_FILE = "unipi-events/Info.plist";
@@ -374,8 +461,9 @@
 		};
 		74C00FF32092231400C25294 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8345B37E840C4747D459F73F /* Pods-unipi-events.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-twitter";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7FL927P776;
 				INFOPLIST_FILE = "unipi-events/Info.plist";
@@ -392,6 +480,7 @@
 		};
 		74C00FF52092231400C25294 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FC3AD40686A1CBF6DE449F9 /* Pods-unipi-eventsTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -413,6 +502,7 @@
 		};
 		74C00FF62092231400C25294 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF2B07063716AF57B242D339 /* Pods-unipi-eventsTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

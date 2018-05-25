@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  EventTableViewController.swift
 //  unipi-events
 //
 //  Created by Ildar Gubaydullin on 26/04/2018.
@@ -8,21 +8,28 @@
 
 import UIKit
 
-class EventTableViewController:
-    UITableViewController
+class EventTableViewController: UITableViewController
 {
     
-    private let dwarves = [
-        "Sleepy", "Sneezy", "Bashful"
+    let cellTableIdentifier = "CellTableIdentifier"
+    let computers = [
+        ["Name": "Macbook Air", "Color": "Silver"],
+        ["Name": "Macbook Pro", "Color": "Gray"],
+        ["Name": "Lenovo", "Color": "Purple"],
+        ["Name": "Macbook Air", "Color": "Silver"],
+        ["Name": "Macbook Pro", "Color": "Gray"],
+        ["Name": "Lenovo", "Color": "Purple"],
+        ["Name": "Macbook Air", "Color": "Silver"],
+        ["Name": "Macbook Pro", "Color": "Gray"],
+        ["Name": "Lenovo", "Color": "Purple"]
     ]
     
-    let simpleTableIdentifier = "SimpleTableIdentifier"
-    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        // Do any additional setup after loading the view, typically from a nib.
-//    }
-//
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.register(EventTableViewCell.self, forCellReuseIdentifier: cellTableIdentifier)
+        tableView.self.rowHeight = 66
+    }
+
 //    override func didReceiveMemoryWarning() {
 //        super.didReceiveMemoryWarning()
 //        // Dispose of any resources that can be recreated.
@@ -32,22 +39,18 @@ class EventTableViewController:
     // MARK: Table View Data Source Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dwarves.count
+        return computers.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: simpleTableIdentifier)
-        if (cell == nil) {
-            cell = UITableViewCell(
-                style: .subtitle,
-                reuseIdentifier: simpleTableIdentifier)
-            let image = UIImage(named: "rn-logo")
-            cell?.imageView?.image = image
-            
-        }
-        cell?.detailTextLabel?.text = "Hello, people"
-        cell?.textLabel?.text = dwarves[indexPath.row]
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellTableIdentifier, for: indexPath)
+            as! EventTableViewCell
+        
+        // let rowData = computers[indexPath.row]
+        cell.caption = "Название события" //rowData["Name"]!
+        cell.subCaption = "Организация или место проведения" //rowData["Color"]!
+        
+        return cell
     }
 
 }

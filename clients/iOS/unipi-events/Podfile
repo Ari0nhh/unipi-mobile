@@ -1,0 +1,13 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.3'
+
+target 'unipi-events' do
+#    use_frameworks!
+    pod 'Macaw', :path => 'Pods/Macaw-master'    
+
+    target 'unipi-eventsTests' do
+        inherit! :search_paths
+        # Pods for testing
+    end
+
+end

@@ -1,0 +1,6 @@
+module SWXMLHash [system] {
+  umbrella header "SWXMLHash-umbrella.h"
+
+  export *
+  module * { export * }
+}
