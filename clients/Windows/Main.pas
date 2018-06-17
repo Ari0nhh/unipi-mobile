@@ -53,6 +53,10 @@ type
         cxStyleInternal: TcxStyle;
     	pnlEvtData: TPanel;
     	EvtFrame: TEventData;
+        dxTabEvent: TdxRibbonTab;
+        dxBarsEditEvent: TdxBar;
+        dxBarApplyEvent: TdxBarLargeButton;
+        dxBarDiscardEvent: TdxBarLargeButton;
     	procedure dxBtnSrvEditClick(Sender: TObject);
     	procedure FormCreate(Sender: TObject);
     	procedure FormDestroy(Sender: TObject);
@@ -100,12 +104,13 @@ begin
     	Exit;
 
 	KillContexts();
-    pnlEvents.Visible := False;
+    HideAllFrames();
 
     EvtFrame.PopulateEventData(FSession, clEvents.Fields[0].AsInteger);
 
     pnlEvtData.Align := alClient;
     pnlEvtData.Visible := True;
+    dxRibbon.Contexts[1].Activate();
 end;
 
 procedure TMWnd.cxEvtViewStylesGetCaptionRowStyle(
@@ -124,6 +129,7 @@ var
     obj : TJSONObject;
 begin
     HideAllFrames();
+    KillContexts();
 
 	events := FSession.Execute('REST/events');
     if not Assigned(events) then
