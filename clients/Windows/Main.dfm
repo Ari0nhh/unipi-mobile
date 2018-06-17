@@ -29,7 +29,7 @@ object MWnd: TMWnd
       item
         Color = 10498221
       end>
-    TabOrder = 2
+    TabOrder = 0
     TabStop = False
     object dxTabAdmin: TdxRibbonTab
       Active = True
@@ -66,7 +66,7 @@ object MWnd: TMWnd
     Width = 257
     Height = 217
     BevelOuter = bvNone
-    TabOrder = 5
+    TabOrder = 3
     Visible = False
     object cxEvtGrid: TcxGrid
       Left = 0
@@ -139,55 +139,85 @@ object MWnd: TMWnd
       Height = 217
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = -920
-      ExplicitTop = -359
-      inherited pnlLeft: TPanel
+      ExplicitWidth = 273
+      ExplicitHeight = 217
+      inherited cxPages: TcxPageControl
+        Width = 273
         Height = 217
-        inherited cxGroupBox2: TcxGroupBox
-          inherited cxEvtData: TcxVerticalGrid
-            Version = 1
-            inherited cxEvtDataCategoryRow1: TcxCategoryRow
-              ID = 0
-              ParentID = -1
-              Index = 0
-              Version = 1
+        ExplicitWidth = 273
+        ExplicitHeight = 217
+        ClientRectBottom = 193
+        ClientRectRight = 269
+        inherited cxTabBase: TcxTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 4
+          ExplicitWidth = 265
+          ExplicitHeight = 189
+          inherited cxGroupProgram: TcxGroupBox
+            inherited cxGrid: TcxGrid
+              Anchors = [akLeft, akTop, akBottom]
             end
-            inherited cxEvtName: TcxEditorRow
-              ID = 1
-              ParentID = 0
-              Index = 0
-              Version = 1
+          end
+          inherited pnlLeft: TPanel
+            Height = 189
+            DesignSize = (
+              361
+              189)
+            inherited cxGroupInfo: TcxGroupBox
+              inherited cxEvtData: TcxVerticalGrid
+                Version = 1
+                inherited cxEvtDataCategoryRow1: TcxCategoryRow
+                  ID = 0
+                  ParentID = -1
+                  Index = 0
+                  Version = 1
+                end
+                inherited cxEvtName: TcxEditorRow
+                  ID = 1
+                  ParentID = 0
+                  Index = 0
+                  Version = 1
+                end
+                inherited cxEvtDateStart: TcxEditorRow
+                  ID = 2
+                  ParentID = 0
+                  Index = 1
+                  Version = 1
+                end
+                inherited cxEvtDateEnd: TcxEditorRow
+                  ID = 3
+                  ParentID = 0
+                  Index = 2
+                  Version = 1
+                end
+                inherited cxEvtInternal: TcxEditorRow
+                  ID = 4
+                  ParentID = 0
+                  Index = 3
+                  Version = 1
+                end
+                inherited cxEvtAddress: TcxEditorRow
+                  ID = 5
+                  ParentID = 0
+                  Index = 4
+                  Version = 1
+                end
+              end
             end
-            inherited cxEvtDateStart: TcxEditorRow
-              ID = 2
-              ParentID = 0
-              Index = 1
-              Version = 1
-            end
-            inherited cxEvtDateEnd: TcxEditorRow
-              Properties.Value = Null
-              ID = 3
-              ParentID = 0
-              Index = 2
-              Version = 1
-            end
-            inherited cxEvtInternal: TcxEditorRow
-              ID = 4
-              ParentID = 0
-              Index = 3
-              Version = 1
-            end
-            inherited cxEvtAddress: TcxEditorRow
-              ID = 5
-              ParentID = 0
-              Index = 4
-              Version = 1
+            inherited cxGroupDescr: TcxGroupBox
+              Anchors = [akLeft, akTop, akBottom]
+              inherited cxDescr: TcxMemo
+                Anchors = [akLeft, akTop, akBottom]
+              end
             end
           end
         end
-      end
-      inherited pnlHost: TPanel
-        Height = 217
+        inherited cxTabMap: TcxTabSheet
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
+        end
       end
     end
   end

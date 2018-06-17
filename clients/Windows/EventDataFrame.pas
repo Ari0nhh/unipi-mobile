@@ -14,29 +14,31 @@ uses
 	dxMapControlInformationProvider, dxMapControlBingMapInformationProviders,
 	dxMapControl, cxCustomData, cxFilter, cxData, cxDataStorage, cxNavigator,
 	Data.DB, cxDBData, cxGridLevel, cxGridCustomView, cxGridCustomTableView,
-	cxGridTableView, cxGridDBTableView, cxGrid;
+	cxGridTableView, cxGridDBTableView, cxGrid, dxBarBuiltInMenu, cxPC, dxNavBar;
 
 type
 	TEventData = class(TFrame)
-		cxEvtData: TcxVerticalGrid;
-		cxEvtDataCategoryRow1: TcxCategoryRow;
-		cxEvtName: TcxEditorRow;
-		cxEvtDateStart: TcxEditorRow;
-		cxEvtDateEnd: TcxEditorRow;
-		cxEvtAddress: TcxEditorRow;
-    cxEvtInternal: TcxEditorRow;
-		pnlLeft: TPanel;
-		cxGroupBox1: TcxGroupBox;
-		cxGroupBox2: TcxGroupBox;
-		pnlHost: TPanel;
-		Panel1: TPanel;
-		cxGroupBox3: TcxGroupBox;
-		dxMapControl1: TdxMapControl;
-		dxMapLayer: TdxMapImageTileLayer;
-		cxView: TcxGridDBTableView;
-		cxLevel: TcxGridLevel;
-		cxGrid: TcxGrid;
-		cxDescr: TcxMemo;
+        cxPages: TcxPageControl;
+        cxTabBase: TcxTabSheet;
+        cxGroupProgram: TcxGroupBox;
+        cxGrid: TcxGrid;
+        cxView: TcxGridDBTableView;
+        cxLevel: TcxGridLevel;
+        pnlLeft: TPanel;
+        cxGroupInfo: TcxGroupBox;
+        cxEvtData: TcxVerticalGrid;
+        cxEvtDataCategoryRow1: TcxCategoryRow;
+        cxEvtName: TcxEditorRow;
+        cxEvtDateStart: TcxEditorRow;
+        cxEvtDateEnd: TcxEditorRow;
+        cxEvtInternal: TcxEditorRow;
+        cxEvtAddress: TcxEditorRow;
+        cxGroupDescr: TcxGroupBox;
+        cxDescr: TcxMemo;
+    cxTabMap: TcxTabSheet;
+    dxMap: TdxMapControl;
+    dxMapDataProvider: TdxMapImageTileLayer;
+        procedure FrameResize(Sender: TObject);
 	public
     	procedure PopulateEventData(ASession : ISession; const AId : Integer);
         procedure PopulateBaseInfo(AJson : TJSONObject);
@@ -47,6 +49,16 @@ implementation
 {$R *.dfm}
 
 { TEventData }
+
+procedure TEventData.FrameResize(Sender: TObject);
+begin
+	cxGroupDescr.Height := cxTabBase.Height - cxGroupInfo.Height - 2;
+    cxDescr.Height := cxGroupDescr.Height - 25;
+    cxGroupProgram.Width := cxTabBase.Width - cxGroupProgram.Left - 5;
+    cxGroupProgram.Height := cxTabBase.Height - 2;
+    cxGrid.Width := cxGroupProgram.Width - 14;
+    cxGrid.Height := cxGroupProgram.Height - 24;
+end;
 
 procedure TEventData.PopulateBaseInfo(AJson: TJSONObject);
 var

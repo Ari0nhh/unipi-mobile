@@ -78,6 +78,7 @@ type
     	procedure SaveSettings();
         procedure LoadSettings();
         procedure KillContexts();
+        procedure HideAllFrames();
 	end;
 
 var
@@ -122,6 +123,8 @@ var
     i   : Integer;
     obj : TJSONObject;
 begin
+    HideAllFrames();
+
 	events := FSession.Execute('REST/events');
     if not Assigned(events) then
     	Exit;
@@ -250,6 +253,12 @@ procedure TMWnd.FormDestroy(Sender: TObject);
 begin
     SaveSettings();
 	FreeAndNil(FServerList);
+end;
+
+procedure TMWnd.HideAllFrames;
+begin
+	pnlEvents.Visible := False;
+    pnlEvtData.Visible := False;
 end;
 
 procedure TMWnd.InitLoginGUI;
