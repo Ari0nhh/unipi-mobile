@@ -71,6 +71,7 @@ var
 begin
 	Result := nil;
     try
+        FSession.URL.Path := '/';
         FSession.URL.Document := AReqUrl;
         FSession.URL.Params := 'access_token=' + FToken;
         resp := FSession.Get(FSession.URL.URI);

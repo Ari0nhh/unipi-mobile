@@ -90,7 +90,7 @@ begin
 	if not Assigned(ASession) then
     	Exit;
 
-    json := ASession.Execute(Format('REST/event/%d/', [AId]));
+    json := ASession.Execute(Format('REST/event/%d', [AId]));
     if not Assigned(json) then
     	Exit;
 
