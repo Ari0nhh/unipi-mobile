@@ -57,6 +57,14 @@ type
         dxBarsEditEvent: TdxBar;
         dxBarApplyEvent: TdxBarLargeButton;
         dxBarDiscardEvent: TdxBarLargeButton;
+    dxBarEditProgram: TdxBar;
+    dxBarAddPeriod: TdxBarLargeButton;
+    dxBarsActions: TdxBar;
+    dxBarEditPeriod: TdxBarButton;
+    dxBarDelPeriod: TdxBarButton;
+    dxBarAddAction: TdxBarLargeButton;
+    dxBarEditAction: TdxBarButton;
+    dxBarDelAction: TdxBarButton;
     	procedure dxBtnSrvEditClick(Sender: TObject);
     	procedure FormCreate(Sender: TObject);
     	procedure FormDestroy(Sender: TObject);
@@ -69,6 +77,7 @@ type
         procedure cxEvtViewCellDblClick(Sender: TcxCustomGridTableView;
           ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
           AShift: TShiftState; var AHandled: Boolean);
+    	procedure dxBarDiscardEventClick(Sender: TObject);
 	strict private
         FServerList : TList<TServerData>;
         FSession    : ISession;
@@ -222,6 +231,11 @@ begin
     finally
     	login.Free();
     end;
+end;
+
+procedure TMWnd.dxBarDiscardEventClick(Sender: TObject);
+begin
+	DisplayEventData();
 end;
 
 procedure TMWnd.dxBarLogOutClick(Sender: TObject);

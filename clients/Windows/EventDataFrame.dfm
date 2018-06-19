@@ -22,8 +22,6 @@ object EventData: TEventData
     object cxTabBase: TcxTabSheet
       Caption = #1048#1085#1092#1086#1088#1084#1072#1094#1080#1103' '#1086' '#1084#1077#1088#1086#1087#1088#1080#1103#1090#1080#1080
       ImageIndex = 0
-      ExplicitLeft = 5
-      ExplicitTop = 3
       object cxGroupProgram: TcxGroupBox
         Left = 362
         Top = -3
@@ -149,6 +147,10 @@ object EventData: TEventData
     object cxTabMap: TcxTabSheet
       Caption = #1050#1072#1088#1090#1072
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object dxMap: TdxMapControl
         Left = 0
         Top = 0

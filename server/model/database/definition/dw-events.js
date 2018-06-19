@@ -38,6 +38,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.CHAR(1),
             field: 'evt_internal',
             allowNull: true
+        },
+        evtLattitude: {
+            type: DataTypes.FLOAT,
+            field: 'evt_lat',
+            allowNull: true
+        },
+        evtLongitude: {
+            type: DataTypes.FLOAT,
+            field: 'evt_long',
+            allowNull: true
         }
     }, {
         schema: 'public',

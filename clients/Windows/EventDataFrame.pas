@@ -35,9 +35,9 @@ type
         cxEvtAddress: TcxEditorRow;
         cxGroupDescr: TcxGroupBox;
         cxDescr: TcxMemo;
-    cxTabMap: TcxTabSheet;
-    dxMap: TdxMapControl;
-    dxMapDataProvider: TdxMapImageTileLayer;
+        cxTabMap: TcxTabSheet;
+        dxMap: TdxMapControl;
+        dxMapDataProvider: TdxMapImageTileLayer;
         procedure FrameResize(Sender: TObject);
 	public
     	procedure PopulateEventData(ASession : ISession; const AId : Integer);
@@ -93,6 +93,24 @@ begin
     if not Assigned(val) then
     	Exit;
     cxDescr.Lines.Text := val.GetValue<string>();
+
+    val := AJson.GetValue('evtLattitude');
+    if not Assigned(val) then
+    	Exit;
+
+    if not val.Null then
+    	dxMap.CenterPoint.Latitude := val.GetValue<Double>();
+
+    val := AJson.GetValue('evtLongitude');
+    if not Assigned(val) then
+    	Exit;
+
+    if not val.Null then
+    	dxMap.CenterPoint.Longitude := val.GetValue<Double>();
+
+    if (dxMap.CenterPoint.Longitude <> 0) and (dxMap.CenterPoint.Latitude <> 0) then
+    	dxMap.ZoomLevel := 18;
+
 end;
 
 procedure TEventData.PopulateEventData(ASession: ISession; const AId : Integer);
