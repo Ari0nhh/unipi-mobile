@@ -103,16 +103,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val adapter: PostsAdapter = PostsAdapter(posts, { eventItem : Event -> eventItemClicked(eventItem) })
         recyclerView!!.setAdapter(adapter)
 
+
         UnipiMobileApi.getEvents().enqueue(object: Callback<List<Event>?> {
             override fun onFailure(call: Call<List<Event>?>?, t: Throwable?) {
                 Toast.makeText(this@MainActivity, "An error occurred during networking", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<List<Event>?>?, response: Response<List<Event>?>?) {
-                posts?.addAll(response?.body()!!) //(response?.body())
-                recyclerView?.getAdapter()?.notifyDataSetChanged()
+                val data = response?.body()
+                if (data != null) {
+                    posts?.addAll(data)
+                    recyclerView?.getAdapter()?.notifyDataSetChanged()
+                }
             }
         })
+
     }
 
     override fun onBackPressed() {
