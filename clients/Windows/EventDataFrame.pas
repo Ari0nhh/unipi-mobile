@@ -205,12 +205,12 @@ begin
             val := period.GetValue('epStart');
             if not Assigned(val) then
                 continue;
-            dS := _ToDate(val.GetValue<string>());
+            dS := _ToDateTime(val.GetValue<string>());
 
             val := period.GetValue('epEnd');
             if not Assigned(val) then
                 continue;
-            dE := _ToDate(val.GetValue<string>());
+            dE := _ToDateTime(val.GetValue<string>());
 
             clPeriods.Append();
             clPeriods.Fields[0].Value := id;
@@ -252,12 +252,12 @@ begin
                 val := action.GetValue('eaStart');
                 if not Assigned(val) then
                     continue;
-                dS := _ToDate(val.GetValue<string>());
+                dS := _ToDateTime(val.GetValue<string>());
 
                 val := action.GetValue('eaEnd');
                 if not Assigned(val) then
                     continue;
-                dE := _ToDate(val.GetValue<string>());
+                dE := _ToDateTime(val.GetValue<string>());
 
                 val := action.GetValue('eaLocation');
                 if not Assigned(val) then

@@ -59,12 +59,12 @@ object EventData: TEventData
             object cxViewclStart: TcxGridDBColumn
               Caption = 'Start'
               DataBinding.FieldName = 'clStart'
-              Width = 100
+              Width = 120
             end
             object cxViewclEnd: TcxGridDBColumn
               Caption = 'End'
               DataBinding.FieldName = 'clEnd'
-              Width = 100
+              Width = 120
             end
           end
           object cxActView: TcxGridDBTableView
@@ -117,12 +117,12 @@ object EventData: TEventData
             object cxActStartCol: TcxGridDBColumn
               Caption = 'Start'
               DataBinding.FieldName = 'clStart'
-              Width = 80
+              Width = 120
             end
             object cxActEndCol: TcxGridDBColumn
               Caption = 'End'
               DataBinding.FieldName = 'clEnd'
-              Width = 80
+              Width = 120
             end
             object cxActLocCol: TcxGridDBColumn
               Caption = 'Location'
