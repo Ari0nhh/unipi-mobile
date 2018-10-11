@@ -86,7 +86,7 @@ object MWnd: TMWnd
     Width = 257
     Height = 217
     BevelOuter = bvNone
-    TabOrder = 2
+    TabOrder = 1
     Visible = False
     object cxEvtGrid: TcxGrid
       Left = 0
@@ -229,18 +229,6 @@ object MWnd: TMWnd
                 Anchors = [akLeft, akTop, akBottom]
               end
             end
-          end
-        end
-        inherited cxTabMap: TcxTabSheet
-          ExplicitLeft = 4
-          ExplicitTop = 4
-          ExplicitWidth = 1076
-          ExplicitHeight = 555
-          inherited dxMap: TdxMapControl
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 1076
-            ExplicitHeight = 555
           end
         end
       end
@@ -415,8 +403,8 @@ object MWnd: TMWnd
           Visible = True
           ItemName = 'dxBarDiscardEvent'
         end>
-      OneOnRow = True
-      Row = 2
+      OneOnRow = False
+      Row = 0
       UseOwnFont = False
       Visible = True
       WholeRow = False
@@ -443,8 +431,8 @@ object MWnd: TMWnd
           Visible = True
           ItemName = 'dxBarDelPeriod'
         end>
-      OneOnRow = True
-      Row = 1
+      OneOnRow = False
+      Row = 0
       UseOwnFont = False
       Visible = True
       WholeRow = False
@@ -471,7 +459,7 @@ object MWnd: TMWnd
           Visible = True
           ItemName = 'dxBarDelAction'
         end>
-      OneOnRow = True
+      OneOnRow = False
       Row = 0
       UseOwnFont = False
       Visible = True

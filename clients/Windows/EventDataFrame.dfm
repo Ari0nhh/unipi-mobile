@@ -37,12 +37,104 @@ object EventData: TEventData
           TabOrder = 0
           object cxView: TcxGridDBTableView
             Navigator.Buttons.CustomButtons = <>
+            DataController.DataSource = dsPeriods
+            DataController.KeyFieldNames = 'clID'
             DataController.Summary.DefaultGroupSummaryItems = <>
             DataController.Summary.FooterSummaryItems = <>
             DataController.Summary.SummaryGroups = <>
+            OptionsData.Deleting = False
+            OptionsData.Editing = False
+            OptionsData.Inserting = False
+            OptionsView.GroupByBox = False
+            object cxViewclID: TcxGridDBColumn
+              Caption = 'ID'
+              DataBinding.FieldName = 'clID'
+              Visible = False
+            end
+            object cxViewclName: TcxGridDBColumn
+              Caption = 'Name'
+              DataBinding.FieldName = 'clName'
+              Width = 500
+            end
+            object cxViewclStart: TcxGridDBColumn
+              Caption = 'Start'
+              DataBinding.FieldName = 'clStart'
+              Width = 100
+            end
+            object cxViewclEnd: TcxGridDBColumn
+              Caption = 'End'
+              DataBinding.FieldName = 'clEnd'
+              Width = 100
+            end
           end
-          object cxLevel: TcxGridLevel
+          object cxActView: TcxGridDBTableView
+            Navigator.Buttons.CustomButtons = <>
+            Navigator.Buttons.First.Visible = True
+            Navigator.Buttons.PriorPage.Visible = True
+            Navigator.Buttons.Prior.Visible = True
+            Navigator.Buttons.Next.Visible = True
+            Navigator.Buttons.NextPage.Visible = True
+            Navigator.Buttons.Last.Visible = True
+            Navigator.Buttons.Insert.Visible = True
+            Navigator.Buttons.Append.Visible = False
+            Navigator.Buttons.Delete.Visible = True
+            Navigator.Buttons.Edit.Visible = True
+            Navigator.Buttons.Post.Visible = True
+            Navigator.Buttons.Cancel.Visible = True
+            Navigator.Buttons.Refresh.Visible = True
+            Navigator.Buttons.SaveBookmark.Visible = True
+            Navigator.Buttons.GotoBookmark.Visible = True
+            Navigator.Buttons.Filter.Visible = True
+            DataController.DataSource = dsActions
+            DataController.DetailKeyFieldNames = 'clPeriodId'
+            DataController.KeyFieldNames = 'clActID'
+            DataController.MasterKeyFieldNames = 'clID'
+            DataController.Summary.DefaultGroupSummaryItems = <>
+            DataController.Summary.FooterSummaryItems = <>
+            DataController.Summary.SummaryGroups = <>
+            OptionsData.Deleting = False
+            OptionsData.Editing = False
+            OptionsData.Inserting = False
+            OptionsView.GroupByBox = False
+            object cxActIDCol: TcxGridDBColumn
+              DataBinding.FieldName = 'clActID'
+              Visible = False
+            end
+            object cxActPerIdCol: TcxGridDBColumn
+              DataBinding.FieldName = 'clPeriodId'
+              Visible = False
+            end
+            object cxActNameCol: TcxGridDBColumn
+              Caption = 'Name'
+              DataBinding.FieldName = 'clName'
+              Width = 200
+            end
+            object cxActDescCol: TcxGridDBColumn
+              Caption = 'Description'
+              DataBinding.FieldName = 'clDescription'
+              Width = 500
+            end
+            object cxActStartCol: TcxGridDBColumn
+              Caption = 'Start'
+              DataBinding.FieldName = 'clStart'
+              Width = 80
+            end
+            object cxActEndCol: TcxGridDBColumn
+              Caption = 'End'
+              DataBinding.FieldName = 'clEnd'
+              Width = 80
+            end
+            object cxActLocCol: TcxGridDBColumn
+              Caption = 'Location'
+              DataBinding.FieldName = 'clLocation'
+              Width = 500
+            end
+          end
+          object cxPeriods: TcxGridLevel
             GridView = cxView
+            object cxActions: TcxGridLevel
+              GridView = cxActView
+            end
           end
         end
       end
@@ -147,10 +239,6 @@ object EventData: TEventData
     object cxTabMap: TcxTabSheet
       Caption = #1050#1072#1088#1090#1072
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object dxMap: TdxMapControl
         Left = 0
         Top = 0
@@ -159,10 +247,6 @@ object EventData: TEventData
         Align = alClient
         NavigationPanel.Visible = False
         TabOrder = 0
-        ExplicitLeft = 256
-        ExplicitTop = 304
-        ExplicitWidth = 400
-        ExplicitHeight = 200
         object dxMapDataProvider: TdxMapImageTileLayer
           ProviderClassName = 'TdxMapControlOpenStreetMapImageryDataProvider'
           Provider.Subdomains.Strings = (
@@ -173,5 +257,95 @@ object EventData: TEventData
         end
       end
     end
+  end
+  object dsPeriods: TDataSource
+    DataSet = clPeriods
+    Left = 24
+    Top = 320
+  end
+  object clPeriods: TClientDataSet
+    PersistDataPacket.Data = {
+      600000009619E0BD010000001800000004000000000003000000600004636C49
+      44040001000000000006636C4E616D6502004900000001000557494454480200
+      0200F40107636C5374617274080008000000000005636C456E64080008000000
+      00000000}
+    Active = True
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'clID'
+        DataType = ftInteger
+      end
+      item
+        Name = 'clName'
+        DataType = ftString
+        Size = 500
+      end
+      item
+        Name = 'clStart'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'clEnd'
+        DataType = ftDateTime
+      end>
+    IndexDefs = <>
+    Params = <>
+    StoreDefs = True
+    Left = 56
+    Top = 320
+  end
+  object dsActions: TDataSource
+    DataSet = clActions
+    Left = 23
+    Top = 351
+  end
+  object clActions: TClientDataSet
+    PersistDataPacket.Data = {
+      B70000009619E0BD010000001800000007000000000003000000B70007636C41
+      6374494404000100000000000A636C506572696F644964040001000000000006
+      636C4E616D65020049000000010005574944544802000200F4010D636C446573
+      6372697074696F6E020049000000010005574944544802000200F40107636C53
+      74617274080008000000000005636C456E6408000800000000000A636C4C6F63
+      6174696F6E020049000000010005574944544802000200F4010000}
+    Active = True
+    Aggregates = <>
+    FieldDefs = <
+      item
+        Name = 'clActID'
+        DataType = ftInteger
+      end
+      item
+        Name = 'clPeriodId'
+        DataType = ftInteger
+      end
+      item
+        Name = 'clName'
+        DataType = ftString
+        Size = 500
+      end
+      item
+        Name = 'clDescription'
+        DataType = ftString
+        Size = 500
+      end
+      item
+        Name = 'clStart'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'clEnd'
+        DataType = ftDateTime
+      end
+      item
+        Name = 'clLocation'
+        DataType = ftString
+        Size = 500
+      end>
+    IndexDefs = <>
+    Params = <>
+    StoreDefs = True
+    Left = 55
+    Top = 352
   end
 end
