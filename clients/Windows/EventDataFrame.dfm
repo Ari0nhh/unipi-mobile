@@ -146,6 +146,8 @@ object EventData: TEventData
         Align = alLeft
         BevelOuter = bvNone
         TabOrder = 1
+        ExplicitLeft = 2
+        ExplicitTop = 3
         object cxGroupInfo: TcxGroupBox
           Left = 0
           Top = -3
@@ -171,7 +173,7 @@ object EventData: TEventData
             object cxEvtName: TcxEditorRow
               Properties.Caption = #1053#1072#1079#1074#1072#1085#1080#1077' '#1084#1077#1088#1086#1087#1088#1080#1103#1090#1080#1103
               Properties.DataBinding.ValueType = 'String'
-              Properties.Value = Null
+              Properties.Value = ''
               ID = 1
               ParentID = 0
               Index = 0
@@ -180,6 +182,7 @@ object EventData: TEventData
             object cxEvtDateStart: TcxEditorRow
               Properties.Caption = #1044#1072#1090#1072' '#1085#1072#1095#1072#1083#1072
               Properties.EditPropertiesClassName = 'TcxDateEditProperties'
+              Properties.EditProperties.Kind = ckDateTime
               Properties.DataBinding.ValueType = 'DateTime'
               Properties.Value = 0d
               ID = 2
@@ -190,6 +193,7 @@ object EventData: TEventData
             object cxEvtDateEnd: TcxEditorRow
               Properties.Caption = #1044#1072#1090#1072' '#1086#1082#1086#1085#1095#1072#1085#1080#1103
               Properties.EditPropertiesClassName = 'TcxDateEditProperties'
+              Properties.EditProperties.Kind = ckDateTime
               Properties.DataBinding.ValueType = 'DateTime'
               Properties.Value = 0d
               ID = 3
@@ -210,7 +214,7 @@ object EventData: TEventData
             object cxEvtAddress: TcxEditorRow
               Properties.Caption = #1040#1076#1088#1077#1089' '#1087#1088#1086#1074#1077#1076#1077#1085#1080#1103
               Properties.DataBinding.ValueType = 'String'
-              Properties.Value = Null
+              Properties.Value = ''
               ID = 5
               ParentID = 0
               Index = 4

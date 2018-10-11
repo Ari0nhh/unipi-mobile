@@ -178,6 +178,8 @@ object MWnd: TMWnd
           end
           inherited pnlLeft: TPanel
             Height = 189
+            ExplicitLeft = 0
+            ExplicitTop = 0
             ExplicitHeight = 189
             DesignSize = (
               361
@@ -192,6 +194,7 @@ object MWnd: TMWnd
                   Version = 1
                 end
                 inherited cxEvtName: TcxEditorRow
+                  Properties.Value = Null
                   ID = 1
                   ParentID = 0
                   Index = 0
@@ -216,6 +219,7 @@ object MWnd: TMWnd
                   Version = 1
                 end
                 inherited cxEvtAddress: TcxEditorRow
+                  Properties.Value = Null
                   ID = 5
                   ParentID = 0
                   Index = 4
@@ -229,6 +233,16 @@ object MWnd: TMWnd
                 Anchors = [akLeft, akTop, akBottom]
               end
             end
+          end
+        end
+        inherited cxTabMap: TcxTabSheet
+          ExplicitWidth = 265
+          ExplicitHeight = 189
+          inherited dxMap: TdxMapControl
+            Width = 265
+            Height = 189
+            ExplicitWidth = 265
+            ExplicitHeight = 189
           end
         end
       end
@@ -612,6 +626,7 @@ object MWnd: TMWnd
       Enabled = False
       Hint = #1053#1086#1074#1086#1077' '#1089#1086#1073#1099#1090#1080#1077
       Visible = ivAlways
+      OnClick = dxBarAddEventClick
       LargeImageIndex = 1
     end
     object dxBarRemEvent: TdxBarLargeButton
@@ -855,6 +870,7 @@ object MWnd: TMWnd
         0000000000000000000000000001000000010000000100000001000000010000
         0001000000010000000100000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000}
+      OnClick = dxBarApplyEventClick
     end
     object dxBarDiscardEvent: TdxBarLargeButton
       Caption = #1047#1072#1082#1088#1099#1090#1100

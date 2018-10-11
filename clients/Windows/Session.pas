@@ -22,7 +22,8 @@ type
     	function IsValid() : Boolean;
         function GetLastError() : string;
 
-        function Execute(const AReqUrl : string) : TJSONValue;
+        function Execute(const AReqUrl : string) : TJSONValue; overload;
+        function Execute(const AReqUrl : string; const APayload : string) : TJSONValue; overload;
 
         property Valid : Boolean read IsValid;
         property LastError : string read GetLastError;
@@ -65,6 +66,29 @@ begin
 	inherited;
 end;
 
+function TSession.Execute(const AReqUrl, APayload: string): TJSONValue;
+var
+	resp : string;
+    sl   : TStringStream;
+begin
+	Result := nil;
+    try
+        FSession.URL.Path := '/';
+        FSession.URL.Document := AReqUrl;
+        FSession.URL.Params := 'access_token=' + FToken;
+
+        sl := TStringStream.Create(APayload, TEncoding.UTF8);
+        try
+            FSession.Request.ContentType := 'application/json';
+        	resp := FSession.Post(FSession.URL.URI, sl);
+        finally
+        	sl.Free();
+        end;
+        Result := TJSONObject.ParseJSONValue(resp);
+    except
+    end;
+end;
+
 function TSession.Execute(const AReqUrl: string): TJSONValue;
 var
 	resp : string;
@@ -74,6 +98,7 @@ begin
         FSession.URL.Path := '/';
         FSession.URL.Document := AReqUrl;
         FSession.URL.Params := 'access_token=' + FToken;
+
         resp := FSession.Get(FSession.URL.URI);
         Result := TJSONObject.ParseJSONValue(resp);
     except

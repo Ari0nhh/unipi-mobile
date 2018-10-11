@@ -10,12 +10,15 @@ type
 		FPort: Integer;
 	end;
 
+    TRequestKind = (rkGet=0, rkPost);
+
     ISession = interface
     ['{A520DD7D-65CA-43D9-AB82-407D4BE83CFC}']
     	function IsValid() : Boolean;
         function GetLastError() : string;
 
-        function Execute(const AReqUrl : string) : TJSONValue;
+        function Execute(const AReqUrl : string) : TJSONValue; overload;
+        function Execute(const AReqUrl : string; const APayload : string) : TJSONValue; overload;
 
         property Valid : Boolean read IsValid;
         property LastError : string read GetLastError;
@@ -23,6 +26,7 @@ type
 
     function _ToDate(const AVal : string) : TDateTime;
     function _ToDateTime(const AVal : string) : TDateTime;
+    function _FromDateTime(const ADT : TDateTime) : string;
 
 implementation
 
@@ -67,6 +71,16 @@ begin
     mm := StrToInt(str);
 
     Result := EncodeDate(y, m, d) + EncodeTime(hh, mm, 0, 0);
+end;
+
+function _FromDateTime(const ADT : TDateTime) : string;
+var
+	y, m, d, hh, mm, ss, ms : Word;
+begin
+	DecodeDate(ADT, y, m, d);
+    DecodeTime(ADT, hh, mm, ss, ms);
+
+    Result := Format('%d-%d-%d %d:%d:%d', [y, m, d, hh, mm, ss]);
 end;
 
 end.

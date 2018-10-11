@@ -78,6 +78,8 @@ type
           ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
           AShift: TShiftState; var AHandled: Boolean);
     	procedure dxBarDiscardEventClick(Sender: TObject);
+    	procedure dxBarAddEventClick(Sender: TObject);
+    	procedure dxBarApplyEventClick(Sender: TObject);
 	strict private
         FServerList : TList<TServerData>;
         FSession    : ISession;
@@ -144,31 +146,36 @@ begin
     if not Assigned(events) then
     	Exit;
 
-    if not (events is TJSONArray) then
-    	Exit;
-
-    arr := events as TJSONArray;
-
     try
-        cxEvtView.BeginUpdate();
-    	clEvents.DisableControls();
+        if not (events is TJSONArray) then
+            Exit;
 
-        clEvents.EmptyDataSet();
+        arr := events as TJSONArray;
 
-        for i:=0 to arr.Count-1 do begin
-        	obj := arr.Items[i] as TJSONObject;
+        try
+            cxEvtView.BeginUpdate();
+            clEvents.DisableControls();
 
-            clEvents.Append();
-            clEvents.Fields[0].Value := obj.GetValue('evt_id').GetValue<Integer>();
-            clEvents.Fields[1].Value := obj.GetValue('evt_name').GetValue<string>();
-            clEvents.Fields[2].Value := _ToDate(obj.GetValue('evt_date_start').GetValue<string>());
-            clEvents.Fields[3].Value := _ToDate(obj.GetValue('evt_date_end').GetValue<string>());
-            clEvents.Fields[4].Value := obj.GetValue('evt_internal').GetValue<Boolean>();
-            clEvents.Post();
+            clEvents.EmptyDataSet();
+
+            for i:=0 to arr.Count-1 do begin
+                obj := arr.Items[i] as TJSONObject;
+
+                clEvents.Append();
+                clEvents.Fields[0].Value := obj.GetValue('evt_id').GetValue<Integer>();
+                clEvents.Fields[1].Value := obj.GetValue('evt_name').GetValue<string>();
+                clEvents.Fields[2].Value := _ToDate(obj.GetValue('evt_date_start').GetValue<string>());
+                clEvents.Fields[3].Value := _ToDate(obj.GetValue('evt_date_end').GetValue<string>());
+                clEvents.Fields[4].Value := obj.GetValue('evt_internal').GetValue<Boolean>();
+                clEvents.Post();
+            end;
+        finally
+            clEvents.EnableControls();
+            cxEvtView.EndUpdate();
         end;
+
     finally
-    	clEvents.EnableControls();
-        cxEvtView.EndUpdate();
+    	events.Free();
     end;
 
     pnlEvents.Align := alClient;
@@ -198,6 +205,28 @@ begin
     pnlEvtData.Visible := False;
 
     FSession := nil;
+end;
+
+procedure TMWnd.dxBarAddEventClick(Sender: TObject);
+begin
+	KillContexts();
+    HideAllFrames();
+
+    EvtFrame.PrepareForNewEvent(FSession);
+
+    pnlEvtData.Align := alClient;
+    pnlEvtData.Visible := True;
+    dxRibbon.Contexts[1].Activate();
+end;
+
+procedure TMWnd.dxBarApplyEventClick(Sender: TObject);
+begin
+	if not EvtFrame.ApplyEventData() then begin
+    	Application.MessageBox('Invalid data', 'Error', MB_ICONSTOP);
+        Exit;
+    end;
+
+    DisplayEventData();
 end;
 
 procedure TMWnd.dxBarBtnLoginClick(Sender: TObject);
@@ -279,6 +308,8 @@ procedure TMWnd.HideAllFrames;
 begin
 	pnlEvents.Visible := False;
     pnlEvtData.Visible := False;
+
+	EvtFrame.CleanUp();
 end;
 
 procedure TMWnd.InitLoginGUI;

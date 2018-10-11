@@ -15,7 +15,7 @@ uses
 	dxMapControl, cxCustomData, cxFilter, cxData, cxDataStorage, cxNavigator,
 	Data.DB, cxDBData, cxGridLevel, cxGridCustomView, cxGridCustomTableView,
 	cxGridTableView, cxGridDBTableView, cxGrid, dxBarBuiltInMenu, cxPC, dxNavBar,
-  Datasnap.DBClient, dxDateTimeWheelPicker;
+    Datasnap.DBClient, dxDateTimeWheelPicker;
 
 type
 	TEventData = class(TFrame)
@@ -44,23 +44,31 @@ type
         cxViewclName: TcxGridDBColumn;
         cxViewclStart: TcxGridDBColumn;
         cxViewclEnd: TcxGridDBColumn;
-    dsActions: TDataSource;
-    clActions: TClientDataSet;
-    cxActView: TcxGridDBTableView;
-    cxActIDCol: TcxGridDBColumn;
-    cxActPerIdCol: TcxGridDBColumn;
-    cxActNameCol: TcxGridDBColumn;
-    cxActDescCol: TcxGridDBColumn;
-    cxActStartCol: TcxGridDBColumn;
-    cxActEndCol: TcxGridDBColumn;
-    cxActLocCol: TcxGridDBColumn;
-    cxPeriods: TcxGridLevel;
-    cxActions: TcxGridLevel;
+        dsActions: TDataSource;
+        clActions: TClientDataSet;
+        cxActView: TcxGridDBTableView;
+        cxActIDCol: TcxGridDBColumn;
+        cxActPerIdCol: TcxGridDBColumn;
+        cxActNameCol: TcxGridDBColumn;
+        cxActDescCol: TcxGridDBColumn;
+        cxActStartCol: TcxGridDBColumn;
+        cxActEndCol: TcxGridDBColumn;
+        cxActLocCol: TcxGridDBColumn;
+        cxPeriods: TcxGridLevel;
+        cxActions: TcxGridLevel;
         procedure FrameResize(Sender: TObject);
 	public
     	procedure PopulateEventData(ASession : ISession; const AId : Integer);
+        procedure PrepareForNewEvent(ASession : ISession);
+        procedure CleanUp();
+        function  ApplyEventData() : Boolean;
+    strict private
+        FSession  : ISession;
+        FNewEvent : Boolean;
+        FCurrId   : Integer;
         procedure PopulateBaseInfo(AJson : TJSONObject);
         procedure PopulatePeriodData(AJSON : TJSONObject);
+        function  ValidateInputInfo() : Boolean;
 	end;
 
 implementation
@@ -68,6 +76,66 @@ implementation
 {$R *.dfm}
 
 { TEventData }
+
+function TEventData.ApplyEventData() : Boolean;
+var
+	json : TJSONObject;
+    val  : TJSONValue;
+    req  : string;
+    api  : string;
+begin
+    Result :=  ValidateInputInfo();
+    if not Result then
+    	Exit;
+
+	json := TJSONObject.Create();
+    try
+        if (not FNewEvent) and (FCurrId > -1) then begin
+            json.AddPair(TJSONString.Create('evtId'), TJSONNumber.Create(FCurrId));
+            api := 'REST/edit_event';
+        end else
+            api := 'REST/add_event';
+
+        json.AddPair(TJSONString.Create('evtName'), TJSONString.Create(cxEvtName.Properties.Value));
+        json.AddPair(TJSONString.Create('evtStart'), TJSONString.Create(_FromDateTime(cxEvtDateStart.Properties.Value)));
+        json.AddPair(TJSONString.Create('evtEnd'),   TJSONString.Create(_FromDateTime(cxEvtDateEnd.Properties.Value)));
+
+        if cxEvtInternal.Properties.Value then
+        	json.AddPair(TJSONString.Create('evtInternal'), TJSONNumber.Create(1))
+    	else
+        	json.AddPair(TJSONString.Create('evtInternal'), TJSONNumber.Create(0));
+
+        json.AddPair(TJSONString.Create('evtAddress'), TJSONString.Create(cxEvtAddress.Properties.Value));
+        json.AddPair(TJSONString.Create('evtDescr'), TJSONString.Create(cxDescr.Text));
+
+        req := json.ToString();
+    finally
+    	json.Free();
+    end;
+
+    val := FSession.Execute(api, req);
+
+    try
+
+    finally
+    	val.Free();
+    end;
+end;
+
+procedure TEventData.CleanUp;
+begin
+    FSession := nil;
+    FNewEvent := False;
+    FCurrId := -1;
+	clPeriods.EmptyDataSet();
+    clActions.EmptyDataSet();
+    cxEvtName.Properties.Value := '';
+    cxEvtDateStart.Properties.Value := Now();
+    cxEvtDateEnd.Properties.Value := Now() + 10;
+    cxEvtInternal.Properties.Value := False;
+    cxEvtAddress.Properties.Value := '';
+    cxDescr.Lines.Clear();
+end;
 
 procedure TEventData.FrameResize(Sender: TObject);
 begin
@@ -137,6 +205,9 @@ var
 	json : TJSONValue;
     &object : TJSONObject;
 begin
+    FSession := ASession;
+    FCurrId := AId;
+
 	if not Assigned(ASession) then
     	Exit;
 
@@ -144,13 +215,17 @@ begin
     if not Assigned(json) then
     	Exit;
 
-    if not (json is TJSONObject) then
-    	Exit;
+    try
+        if not (json is TJSONObject) then
+            Exit;
 
-    &object := json as TJSONObject;
+        &object := json as TJSONObject;
 
-    PopulateBaseInfo(&object as TJSONObject);
-    PopulatePeriodData(&object);
+        PopulateBaseInfo(&object as TJSONObject);
+        PopulatePeriodData(&object);
+    finally
+    	json.Free();
+    end;
 end;
 
 procedure TEventData.PopulatePeriodData(AJSON: TJSONObject);
@@ -167,9 +242,6 @@ var
     loc     : string;
     dS, dE  : TDateTime;
 begin
-    clPeriods.EmptyDataSet();
-    clActions.EmptyDataSet();
-
 	val := AJSON.GetValue('periods');
     if not Assigned(val) then
     	Exit;
@@ -281,6 +353,24 @@ begin
         cxView.EndUpdate();
         cxActView.EndUpdate();
     end;
+end;
+
+procedure TEventData.PrepareForNewEvent(ASession: ISession);
+begin
+	CleanUp();
+
+    FSession := ASession;
+    FNewEvent := False;
+end;
+
+function TEventData.ValidateInputInfo: Boolean;
+begin
+    Result := True;
+	if cxEvtName.Properties.Value = '' then
+    	Exit(False);
+
+    if cxEvtDateStart.Properties.Value > cxEvtDateEnd.Properties.Value then
+    	Exit(False);
 end;
 
 end.

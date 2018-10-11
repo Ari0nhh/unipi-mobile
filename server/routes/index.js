@@ -11,6 +11,8 @@ module.exports = function(passport, db)
     require('./handlers/auth')(router, passport, db);
     require('./handlers/register')(router, passport, db);
     require('./handlers/fav_users')(router, passport, db);
+    require('./handlers/add_event')(router, passport, db);
+    require('./handlers/edit_event')(router, passport, db);
 
     return router;
 };
