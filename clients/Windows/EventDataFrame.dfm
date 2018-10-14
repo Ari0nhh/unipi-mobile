@@ -146,8 +146,6 @@ object EventData: TEventData
         Align = alLeft
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitLeft = 2
-        ExplicitTop = 3
         object cxGroupInfo: TcxGroupBox
           Left = 0
           Top = -3
@@ -243,6 +241,10 @@ object EventData: TEventData
     object cxTabMap: TcxTabSheet
       Caption = #1050#1072#1088#1090#1072
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object dxMap: TdxMapControl
         Left = 0
         Top = 0

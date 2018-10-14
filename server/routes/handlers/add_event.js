@@ -2,6 +2,9 @@ module.exports =  function(router, passport, db)
 {
     router.post('/REST/add_event', (req, res) => {
         passport.authenticate('bearer', {session : false}, (err, user, info) => {
+            if(!user.usAdmin)
+                return res.status(403).end();
+
             let data = {};
             data.evtName = req.body.evtName;
             data.evtDateStart = req.body.evtStart;

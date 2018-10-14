@@ -108,7 +108,7 @@ begin
         json.AddPair(TJSONString.Create('evtAddress'), TJSONString.Create(cxEvtAddress.Properties.Value));
         json.AddPair(TJSONString.Create('evtDescr'), TJSONString.Create(cxDescr.Text));
 
-        req := json.ToString();
+        req := json.ToJSON();
     finally
     	json.Free();
     end;
