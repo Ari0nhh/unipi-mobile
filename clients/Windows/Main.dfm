@@ -178,8 +178,6 @@ object MWnd: TMWnd
           end
           inherited pnlLeft: TPanel
             Height = 189
-            ExplicitLeft = 0
-            ExplicitTop = 0
             ExplicitHeight = 189
             DesignSize = (
               361
@@ -236,14 +234,10 @@ object MWnd: TMWnd
           end
         end
         inherited cxTabMap: TcxTabSheet
-          ExplicitWidth = 265
-          ExplicitHeight = 189
-          inherited dxMap: TdxMapControl
-            Width = 265
-            Height = 189
-            ExplicitWidth = 265
-            ExplicitHeight = 189
-          end
+          ExplicitLeft = 4
+          ExplicitTop = 4
+          ExplicitWidth = 1076
+          ExplicitHeight = 555
         end
       end
     end
@@ -635,6 +629,7 @@ object MWnd: TMWnd
       Enabled = False
       Hint = #1059#1076#1072#1083#1080#1090#1100' '#1089#1086#1073#1099#1090#1080#1077
       Visible = ivAlways
+      OnClick = dxBarRemEventClick
       LargeImageIndex = 2
     end
     object dxBarEventKind: TdxBarCombo

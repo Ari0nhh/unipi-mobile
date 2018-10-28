@@ -80,6 +80,7 @@ type
     	procedure dxBarDiscardEventClick(Sender: TObject);
     	procedure dxBarAddEventClick(Sender: TObject);
     	procedure dxBarApplyEventClick(Sender: TObject);
+    	procedure dxBarRemEventClick(Sender: TObject);
 	strict private
         FServerList : TList<TServerData>;
         FSession    : ISession;
@@ -270,6 +271,26 @@ end;
 procedure TMWnd.dxBarLogOutClick(Sender: TObject);
 begin
 	DoLogOut();
+end;
+
+procedure TMWnd.dxBarRemEventClick(Sender: TObject);
+var
+	id : Int64;
+begin
+    if clEvents.Eof then
+    	Exit;
+
+	if Application.MessageBox(PChar('Are you sure want to delete this event?' + #13#10 +
+    	'This action is irreversible!'), PChar('Warning!'), MB_ICONEXCLAMATION or MB_YESNO) = mrNo then
+    	Exit;
+
+    id := clEvents.Fields[0].Value;
+
+	if FSession.Delete(Format('REST/delete_event/%d', [id])) then begin
+    	DisplayEventData();
+    end else begin
+    	Application.MessageBox('Unable to delete event', 'Error', MB_ICONSTOP);
+    end;
 end;
 
 procedure TMWnd.dxBarSelEventsClick(Sender: TObject);

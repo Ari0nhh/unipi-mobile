@@ -19,6 +19,7 @@ type
 
         function Execute(const AReqUrl : string) : TJSONValue; overload;
         function Execute(const AReqUrl : string; const APayload : string) : TJSONValue; overload;
+        function Delete(const AReqUrl : string) : Boolean;
 
         property Valid : Boolean read IsValid;
         property LastError : string read GetLastError;

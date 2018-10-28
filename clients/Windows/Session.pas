@@ -24,6 +24,7 @@ type
 
         function Execute(const AReqUrl : string) : TJSONValue; overload;
         function Execute(const AReqUrl : string; const APayload : string) : TJSONValue; overload;
+        function Delete(const AReqUrl : string) : Boolean;
 
         property Valid : Boolean read IsValid;
         property LastError : string read GetLastError;
@@ -58,6 +59,19 @@ begin
     FSession.URL.Port := IntToStr(AServer.FPort);
 
     TryAuthorize(ALogin, APassword);
+end;
+
+function TSession.Delete(const AReqUrl: string): Boolean;
+begin
+	Result := False;
+    try
+        FSession.URL.Path := '/';
+        FSession.URL.Document := AReqUrl;
+        FSession.URL.Params := 'access_token=' + FToken;
+        FSession.Delete(FSession.URL.URI);
+        Result := (FSession.ResponseCode = 200);
+    except
+    end;
 end;
 
 destructor TSession.Destroy;
