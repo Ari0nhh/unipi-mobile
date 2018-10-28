@@ -67,6 +67,7 @@ type
         function  ApplyEventData() : Boolean;
         procedure EditSelectedPeriod();
         procedure AddNewPeriod();
+        procedure DeletePeriod();
     strict private
         FSession  : ISession;
         FNewEvent : Boolean;
@@ -209,6 +210,24 @@ procedure TEventData.cxViewCellDblClick(Sender: TcxCustomGridTableView;
   AShift: TShiftState; var AHandled: Boolean);
 begin
 	EditSelectedPeriod();
+end;
+
+procedure TEventData.DeletePeriod;
+var
+	id : Integer;
+begin
+	if clPeriods.Eof then
+    	Exit;
+
+    if Application.MessageBox(PChar('Are you sure want to delete this period?'+#10#13+
+    	'This action is irreversible'), 'Warning', MB_YESNO or MB_ICONEXCLAMATION) = mrNo then
+		Exit;
+
+    id := clPeriods.Fields[0].Value;
+    if FSession.Delete(Format('REST/delete_period/%d', [id])) then begin
+    	clPeriods.Delete();
+    end else
+    	Application.MessageBox('Unable to delete period', 'Error', MB_ICONSTOP);
 end;
 
 procedure TEventData.EditSelectedPeriod;

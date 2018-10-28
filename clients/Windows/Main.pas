@@ -83,6 +83,7 @@ type
     	procedure dxBarRemEventClick(Sender: TObject);
     	procedure dxBarEditPeriodClick(Sender: TObject);
     	procedure dxBarAddPeriodClick(Sender: TObject);
+    procedure dxBarDelPeriodClick(Sender: TObject);
 	strict private
         FServerList : TList<TServerData>;
         FSession    : ISession;
@@ -268,6 +269,11 @@ begin
     finally
     	login.Free();
     end;
+end;
+
+procedure TMWnd.dxBarDelPeriodClick(Sender: TObject);
+begin
+	EvtFrame.DeletePeriod();
 end;
 
 procedure TMWnd.dxBarDiscardEventClick(Sender: TObject);
