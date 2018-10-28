@@ -7,7 +7,8 @@ uses
   Intfs in 'Intfs.pas',
   LoginFormImpl in 'LoginFormImpl.pas' {LoginForm},
   Session in 'Session.pas',
-  EventDataFrame in 'EventDataFrame.pas' {EventData: TFrame};
+  EventDataFrame in 'EventDataFrame.pas' {EventData: TFrame},
+  EditPeriodFormImpl in 'EditPeriodFormImpl.pas' {FrmEditPeriod};
 
 {$R *.res}
 

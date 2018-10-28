@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             field: 'ep_id',
             allowNull: false,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement : true
         },
         epEvent: {
             type: DataTypes.INTEGER,

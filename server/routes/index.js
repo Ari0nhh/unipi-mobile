@@ -14,6 +14,8 @@ module.exports = function(passport, db)
     require('./handlers/add_event')(router, passport, db);
     require('./handlers/edit_event')(router, passport, db);
     require('./handlers/delete_event')(router, passport, db);
+    require('./handlers/add_period')(router, passport, db);
+    require('./handlers/edit_period')(router, passport, db);
 
     return router;
 };

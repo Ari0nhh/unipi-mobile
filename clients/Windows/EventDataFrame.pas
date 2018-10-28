@@ -57,11 +57,16 @@ type
         cxPeriods: TcxGridLevel;
         cxActions: TcxGridLevel;
         procedure FrameResize(Sender: TObject);
+        procedure cxViewCellDblClick(Sender: TcxCustomGridTableView;
+          ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+          AShift: TShiftState; var AHandled: Boolean);
 	public
     	procedure PopulateEventData(ASession : ISession; const AId : Integer);
         procedure PrepareForNewEvent(ASession : ISession);
         procedure CleanUp();
         function  ApplyEventData() : Boolean;
+        procedure EditSelectedPeriod();
+        procedure AddNewPeriod();
     strict private
         FSession  : ISession;
         FNewEvent : Boolean;
@@ -75,12 +80,68 @@ implementation
 
 {$R *.dfm}
 
+uses EditPeriodFormImpl;
+
 { TEventData }
+
+procedure TEventData.AddNewPeriod;
+var
+	edit  : TFrmEditPeriod;
+    json,
+    obj   : TJSONObject;
+    res,
+    id    : TJSONValue;
+begin
+    if FNewEvent then begin
+        if Application.MessageBox('Event data must be applied first', 'Warning', MB_YESNO or MB_ICONEXCLAMATION) = mrNo then
+        	Exit;
+
+        if not ApplyEventData() then begin
+        	Application.MessageBox('Unable to apply event data!', 'Error', MB_ICONSTOP);
+            Exit;
+        end;
+    end;
+
+	json := TJSONObject.Create();
+	edit := TFrmEditPeriod.Create(Self);
+    res  := nil;
+
+    try
+    	if edit.ShowModal() <> mrOk then
+        	Exit;
+
+        json.AddPair(TJSONString.Create('event_id'), TJSONNumber.Create(FCurrId));
+        json.AddPair(TJSONString.Create('period_name'), TJSONString.Create(edit.cxPeriodName.Text));
+        json.AddPair(TJSONString.Create('period_start'), TJSONString.Create(_FromDateTime(edit.cxDateStart.Date)));
+        json.AddPair(TJSONString.Create('period_end'), TJSONString.Create(_FromDateTime(edit.cxDateEnd.Date)));
+
+        res := FSession.Execute('REST/add_period', json.ToJSON());
+
+        if Assigned(res) and (res is TJSONObject) then begin
+        	obj := res as TJSONObject;
+            if not obj.TryGetValue('id', id) then
+            	Exit;
+
+            clPeriods.Append();
+            clPeriods.Fields[0].Value := id.GetValue<Integer>();
+            clPeriods.Fields[1].Value := edit.cxPeriodName.Text;
+            clPeriods.Fields[2].Value := edit.cxDateStart.Date;
+            clPeriods.Fields[3].Value := edit.cxDateEnd.Date;
+            clPeriods.Post();
+        end;
+    finally
+    	json.Free();
+        edit.Free();
+        if Assigned(res) then
+        	res.Free();
+    end;
+end;
 
 function TEventData.ApplyEventData() : Boolean;
 var
 	json : TJSONObject;
-    val  : TJSONValue;
+    val,
+    id   : TJSONValue;
     req  : string;
     api  : string;
 begin
@@ -114,9 +175,15 @@ begin
     end;
 
     val := FSession.Execute(api, req);
-
     try
+    	if val is TJSONObject then begin
+        	if not val.TryGetValue('id', id) then
+            	Exit(False);
 
+            FCurrId := id.GetValue<Integer>();
+            FNewEvent := False;
+    	end else
+        	Exit(False);
     finally
     	val.Free();
     end;
@@ -135,6 +202,53 @@ begin
     cxEvtInternal.Properties.Value := False;
     cxEvtAddress.Properties.Value := '';
     cxDescr.Lines.Clear();
+end;
+
+procedure TEventData.cxViewCellDblClick(Sender: TcxCustomGridTableView;
+  ACellViewInfo: TcxGridTableDataCellViewInfo; AButton: TMouseButton;
+  AShift: TShiftState; var AHandled: Boolean);
+begin
+	EditSelectedPeriod();
+end;
+
+procedure TEventData.EditSelectedPeriod;
+var
+	edit : TFrmEditPeriod;
+    json : TJSONObject;
+    id   : Integer;
+    res  : TJSONValue;
+begin
+	if clPeriods.Eof then
+    	Exit;
+
+    res := nil;
+    id := clPeriods.Fields[0].Value;
+    json := TJSONObject.Create();
+	edit := TFrmEditPeriod.Create(Self, clPeriods.Fields[1].Value,
+    		clPeriods.Fields[2].Value, clPeriods.Fields[3].Value);
+    try
+    	if edit.ShowModal() <> mrOk then
+        	Exit;
+
+        json.AddPair(TJSONString.Create('period_id'), TJSONNumber.Create(id));
+        json.AddPair(TJSONString.Create('period_name'), TJSONString.Create(edit.cxPeriodName.Text));
+        json.AddPair(TJSONString.Create('period_start'), TJSONString.Create(_FromDateTime(edit.cxDateStart.Date)));
+        json.AddPair(TJSONString.Create('period_end'), TJSONString.Create(_FromDateTime(edit.cxDateEnd.Date)));
+
+        res := FSession.Execute('REST/edit_period', json.ToJSON());
+        if Assigned(res) then begin
+        	clPeriods.Edit();
+            clPeriods.Fields[1].Value := edit.cxPeriodName.Text;
+            clPeriods.Fields[2].Value := edit.cxDateStart.Date;
+            clPeriods.Fields[3].Value := edit.cxDateEnd.Date;
+            clPeriods.Post();
+        end;
+    finally
+    	edit.Free();
+        json.Free();
+        if Assigned(res) then
+        	res.Free();
+    end;
 end;
 
 procedure TEventData.FrameResize(Sender: TObject);

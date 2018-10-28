@@ -37,6 +37,7 @@ object EventData: TEventData
           TabOrder = 0
           object cxView: TcxGridDBTableView
             Navigator.Buttons.CustomButtons = <>
+            OnCellDblClick = cxViewCellDblClick
             DataController.DataSource = dsPeriods
             DataController.KeyFieldNames = 'clID'
             DataController.Summary.DefaultGroupSummaryItems = <>

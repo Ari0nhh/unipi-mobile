@@ -13,9 +13,9 @@ module.exports =  function(router, passport, db)
             data.evtDescr = req.body.evtDescr;
             data.evtInternal = req.body.evtInternal;
             data.evtLattitude = 0;
-            data.evtLongitude = 0;
-
             let Event = db.Model.DwEvent;
+
+            data.evtLongitude = 0;
             Event.create(data).then(cEvent=>{
                 res.json({id : cEvent.evtId, status : 'ok'});
             }).catch(error =>{

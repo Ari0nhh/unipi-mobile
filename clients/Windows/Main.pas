@@ -81,6 +81,8 @@ type
     	procedure dxBarAddEventClick(Sender: TObject);
     	procedure dxBarApplyEventClick(Sender: TObject);
     	procedure dxBarRemEventClick(Sender: TObject);
+    	procedure dxBarEditPeriodClick(Sender: TObject);
+    	procedure dxBarAddPeriodClick(Sender: TObject);
 	strict private
         FServerList : TList<TServerData>;
         FSession    : ISession;
@@ -220,6 +222,11 @@ begin
     dxRibbon.Contexts[1].Activate();
 end;
 
+procedure TMWnd.dxBarAddPeriodClick(Sender: TObject);
+begin
+	EvtFrame.AddNewPeriod();
+end;
+
 procedure TMWnd.dxBarApplyEventClick(Sender: TObject);
 begin
 	if not EvtFrame.ApplyEventData() then begin
@@ -266,6 +273,11 @@ end;
 procedure TMWnd.dxBarDiscardEventClick(Sender: TObject);
 begin
 	DisplayEventData();
+end;
+
+procedure TMWnd.dxBarEditPeriodClick(Sender: TObject);
+begin
+	EvtFrame.EditSelectedPeriod();
 end;
 
 procedure TMWnd.dxBarLogOutClick(Sender: TObject);
